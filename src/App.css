@@ -1,0 +1,171 @@
+body {
+  font-size: 1vw;
+}
+
+.App {
+  text-align: center;
+  position: relative;
+  min-height: 100vh;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+main {
+  max-width: 1280px;
+  margin: auto;
+  position: relative;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  position: relative;
+  background-color: #282c34;
+  /* min-height: 100vh; */
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.animation-container {
+  background-color: red;
+}
+.level-animation-container {
+  position: relative;
+  background-color: #282c34;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 0;
+}
+
+.intro-heading {
+    position: absolute;
+    z-index: 150;
+    left: 0;
+    right: 0;
+    width: 40%;
+    top: 11vw;
+    margin: auto;
+}
+
+.intro-heading-totalbonus {
+  font-size: 3vw;
+  color: yellow;
+  font-weight: lighter;
+}
+.intro-heading-title {
+  color: #fff;
+  font-size: 4vw;
+  font-weight: bolder;
+  display: none;
+}
+.intro-heading-logo img {
+  max-width: 200px;
+  display: none;
+}
+.kovcheg-wrapper {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+.kovcheg-wrapper .points {
+  /* background-color: greenyellow; */
+  color: #da0303;
+  font-size: 4vw;
+  transform: translateY(-250px);
+  opacity: 0;
+  transition:  transform 0.5s ease 0.5s, opacity 0.5s ease 0.5s;
+  z-index: 100;
+  padding-right: 70px;
+  font-weight: bolder;
+  text-align: center;
+}
+.kovcheg-wrapper .points.show{ 
+  transform: translateY(-490px);
+  opacity: 1;
+}
+.kovcheg-wrapper .hide  .finger-container {
+  opacity: 0;
+}
+.kovcheg-wrapper .finger-container {
+  transition: opacity 0.5s ease-out 0.3s;
+}
+
+.chest {
+  /* background-color: red;   */
+  position: absolute;  
+  /* width: 100%; */
+  scale: 0.5;
+}
+
+.k1 {
+  /* position: absolute; */
+  left: 10vw;
+  bottom: -8vh;
+  z-index: 1;
+  /* width: 30%; */
+  scale: 0.8;
+}
+.k2 {
+  /* position: absolute; */
+  left: 35vw;
+  bottom: -15vh; 
+  z-index: 3;
+  scale: 0.8;
+}
+.k3 {
+  /* position: absolute; */
+  left: 60vw;
+  bottom: -8vh;
+  scale: 0.8;
+  z-index: 2;
+}
+.finger-container {
+  position: absolute;
+  scale: 0.8;
+  top: 0;
+  left: 40%;
+}
+.button_start,
+.button_next {
+  position: absolute;
+  bottom: 50px;
+  right: 50px;
+  padding: 30px 50px;
+  z-index: 200;
+}
+
+.welcome-scr-animation-container .btn{
+  position: absolute;
+  text-align: center;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+}
+.start_btn {
+  opacity: 0;
+  transform: translateY(300px);
+  transition: all 0.5s ease;
+}
+.start_btn.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
