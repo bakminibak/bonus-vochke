@@ -33,15 +33,15 @@ export default class ChestClass extends Component {
   componentDidMount() {
     console.log("MOUNT", this.state.isChestClicked);
     
-    const mainAnim = Lottie.loadAnimation({
-      container: this.animationContainer.current,
-      animationData:  fullChestAnim,
-      autoplay: false,
-      loop: false
-    }); 
     const mainAnimEmpty = Lottie.loadAnimation({
       container: this.animationContainerEmpty.current,
       animationData: emptyChestAnim,
+      autoplay: false,
+      loop: false
+    }); 
+    const mainAnim = Lottie.loadAnimation({
+      container: this.animationContainer.current,
+      animationData:  fullChestAnim,
       autoplay: false,
       loop: false
     }); 
@@ -59,32 +59,33 @@ export default class ChestClass extends Component {
     this.setState({
       myclassname: 'points show',
       isChestOpen: true,
-      displayFinger: 'hide'
+      displayFinger: 'hide',
+      showFullChest: true
     });
   }
   handleClick(e) {
     e.preventDefault();
     console.log('handleClick', this.state.isChestOpen);
-    this.points = this.props.bonusPoints[this.props.numOpenedChest];
-    console.log('points',  this.points);
-    //this.setState({isChestFull: true});
     if (!this.state.isChestOpen) {
+        this.points = this.props.bonusPoints[this.props.numOpenedChest];
         console.log("playAnim Chest", this.points);     
-        this.setState({displayFinger: "hide"});
+        //this.setState({displayFinger: "hide"});
         this.openChest();
         //hideFinger("hide");
         //this.chestAnim.play();
         
         if (this.points>0){
           this.chestAnim.play();
+          this.setState({showFullChest: true});
         } else {
+          this.setState({showFullChest: false});
           this.chestAnimEmpty.play();
         }
         //mainAnim.play();
+        
         this.props.onClickEl();
         
     } else  {
-
       console.log("SKIP playAnim Chest");
     }
   }
@@ -92,8 +93,8 @@ export default class ChestClass extends Component {
     return (
       <div className='kovcheg-wrapper'>
         <div className={"chest "+this.props.customClass} onClick={this.handleClick.bind(this)}>
-            { !this.state.isChestFull && <div  id={this.props.customClass} className="kovcheg-anim_full" ref={this.animationContainer}></div> }
-            { !this.state.isChestFull && <div  id={'e-'+this.props.customClass} className="kovcheg-anim_empty" ref={this.animationContainerEmpty}></div> }
+            <div  id={this.props.customClass} className={'kovcheg-anim_full '+!!this.state.showFullChest} ref={this.animationContainer}></div>
+            <div  id={'e-'+this.props.customClass} className={'kovcheg-anim_full '+!this.state.showFullChest} ref={this.animationContainerEmpty}></div>
             <div className={this.state.myclassname}>{this.points}</div>   
             <div className={this.state.displayFinger}>
               <Finger />

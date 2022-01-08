@@ -9,12 +9,13 @@ import { Level } from './components/Level';
 import { LevelPoints } from './components/LevelPoints';
 import { WelcomeDesk } from './components/WelcomeDesk';
 import { IntroAnimation } from './components/IntroAnimationDesk/IntroAnimation';
+import {EndScr} from './components/EndScr';
 
 function App() {
   //const animationContainer = useRef(null);
-  const [totalPoints, setTotalPoints] = useState(99);
-  const [currentLevel, setCurrentlevel] = useState(-1);
-  const [numChestOpened, setChestOpened] = useState([0]);
+  const [totalPoints, setTotalPoints] = useState(0);
+  const [currentLevel, setCurrentlevel] = useState(4); //default -1
+  const [numChestOpened, setNumChestOpened] = useState(0);
   const [showInfoScr, setShowInfoScr] = useState(false);
 
   const levelPrizes = [
@@ -32,11 +33,18 @@ function App() {
     console.log("Chest Opened!", numChestOpened, chestClicked);
 
   }
-  const updateTotalPoints = (points) => {
-    console.log("updateTotalPoints: ", points);
-    setTotalPoints(totalPoints + points);
+  const animatePoints = (_points) => {
+    let _toPoints = totalPoints + _points;
+  }
+  const updateTotalPoints = () => {
+    let _points = Number(levelPrizes[currentLevel-1][numChestOpened]);
     
-    console.log("updateTotalPoints: ", points, totalPoints);
+    setNumChestOpened(numChestOpened+1);
+    animatePoints(_points);
+    setTotalPoints(totalPoints + _points);
+    
+    
+    console.log("updateTotalPoints: ", _points, totalPoints);
   }
   const updateLevel = (level) => {
     console.log("updateLevel");
@@ -45,6 +53,8 @@ function App() {
 
   const chestClicked = () => {
     console.log("setIsChestOpen:");
+    
+    setNumChestOpened(numChestOpened+1);
     //setIsChestOpen(true);
   }
   const handleClick = () => {
@@ -52,9 +62,9 @@ function App() {
     loadNextLevel();
   }
   const loadNextLevel = () => {
-    console.log("loadNesxtLEvel: ", currentLevel);
-    setCurrentlevel(currentLevel+1)
-    setChestOpened(false);
+    console.log("loadNesxtLEvel: ", currentLevel);    
+    setNumChestOpened(0);
+    (currentLevel < 4) ? setCurrentlevel(currentLevel+1) : setCurrentlevel(-1);
   }
   return (
     <div className="App">
@@ -63,10 +73,11 @@ function App() {
       <main>
         { currentLevel === -1 && <WelcomeDesk updateLevel={updateLevel} /> }
         { currentLevel === 0 && <IntroAnimation  updateLevel={updateLevel}  /> }        
-        { currentLevel === 1 && <Level levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel} handleNextLevel={() => { loadNextLevel()}} /> }
-        { currentLevel === 2 && <Level levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel}  handleNextLevel={() => { loadNextLevel()}}  /> }
-        { currentLevel === 3 && <Level levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel}  handleNextLevel={() => { loadNextLevel()}}  /> }
-        { currentLevel !== 0 && <LevelPoints totalPoints={totalPoints} />  }             
+        { currentLevel === 1 && <Level updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel} handleNextLevel={() => { loadNextLevel()}} /> }
+        { currentLevel === 2 && <Level updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel}  handleNextLevel={() => { loadNextLevel()}}  /> }
+        { currentLevel === 3 && <Level updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel}  handleNextLevel={() => { loadNextLevel()}}  /> }
+        { currentLevel > 0 && currentLevel < 4 &&<LevelPoints totalPoints={totalPoints} />  }      
+        { currentLevel > 3 && <EndScr totalPoints={totalPoints} handleNextLevel={() => { loadNextLevel()}} />}       
         
       </main>
     </div>

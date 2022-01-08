@@ -106,7 +106,9 @@ main {
   /* width: 100%; */
   scale: 0.5;
 }
-
+.chest  .false {
+  display: none;
+}
 .k1 {
   /* position: absolute; */
   left: 10vw;
