@@ -51,12 +51,12 @@ main {
     left: 0;
     right: 0;
     width: 40%;
-    top: 11vw;
+    top: 15%;
     margin: auto;
 }
 
 .intro-heading-totalbonus {
-  font-size: 3vw;
+  font-size: 2.5vw;
   color: yellow;
   font-weight: lighter;
 }
@@ -81,16 +81,17 @@ main {
   /* background-color: greenyellow; */
   color: #da0303;
   font-size: 4vw;
-  transform: translateY(-250px);
+  /* transform: translateY(-430px); */
   opacity: 0;
-  transition:  transform 0.5s ease 0.5s, opacity 0.5s ease 0.5s;
+  transition:  transform 0.5s ease 0.5s, opacity 0.5s ease-out 0.5s;
   z-index: 100;
-  padding-right: 70px;
+  padding-right: 65px;
   font-weight: bolder;
   text-align: center;
 }
 .kovcheg-wrapper .points.show{ 
-  transform: translateY(-490px);
+  transform:  translateY(-430px);
+  /* margin-top: 200px; */
   opacity: 1;
 }
 .kovcheg-wrapper .hide  .finger-container {
@@ -99,36 +100,36 @@ main {
 .kovcheg-wrapper .finger-container {
   transition: opacity 0.5s ease-out 0.3s;
 }
-
+.kovcheg-anim_full {
+  bottom: 0;
+}
 .chest {
   /* background-color: red;   */
   position: absolute;  
-  /* width: 100%; */
-  scale: 0.5;
+  width: 30%;
+  bottom: -50px;
+  /* scale: 0.5; */
 }
 .chest  .false {
   display: none;
 }
 .k1 {
   /* position: absolute; */
-  left: 10vw;
-  bottom: -8vh;
+  left: 10%;
   z-index: 1;
   /* width: 30%; */
-  scale: 0.8;
+  /* scale: 0.8; */
 }
 .k2 {
   /* position: absolute; */
-  left: 35vw;
-  bottom: -15vh; 
+  left: 34%;
   z-index: 3;
-  scale: 0.8;
+  /* scale: 0.8; */
 }
 .k3 {
   /* position: absolute; */
-  left: 60vw;
-  bottom: -8vh;
-  scale: 0.8;
+  left: 57%;
+  /* scale: 0.8; */
   z-index: 2;
 }
 .finger-container {
@@ -162,7 +163,21 @@ main {
   opacity: 1;
   transform: translateY(0);
 }
+.c-container {
+  position: relative;
 
+}
+.c-container .finalPoints {
+  font-size: 320%;
+  color: rgb(0,38,82);
+  font-weight: bolder;
+  position: absolute;
+  top: 24%;
+  z-index: 300;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

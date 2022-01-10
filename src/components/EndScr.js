@@ -23,9 +23,10 @@ export const EndScr = ({totalPoints, handleNextLevel}) => {
 
     return (
         <div>
-            <div className='c-container' ref={animContainer}>            
+            <div className='c-container' ref={animContainer}>     
+            
+                <div class="finalPoints">Osvoji li ste {totalPoints}</div>       
             </div>        
-            <div>Osvoji li ste {totalPoints}</div>
             <button className='button_start' onClick={handleBtnClick}>RestStart Level </button>             
         </div>
     )

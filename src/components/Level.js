@@ -67,17 +67,13 @@ export const Level = ({currentLevel, updatePoints , handleNextLevel, levelPrizes
 
       const handleBtnClick = (e) => {
         e.preventDefault();
-
-        console.log("handleBtnClick", currentLevel);
         handleNextLevel();
       }
       const chestClicked = () => {
-        const _points = Number(levelPrizes[currentLevel-1, numOfOpenedChest]);
-        console.log("setIsChestOpen:", isChestOpen, _points);
+        const _points = Number(levelPrizes[currentLevel-1][numOfOpenedChest]);
         setNumberOfOpenedChests(numOfOpenedChest+1);
         setIsChestOpen(true);
         updatePoints(_points);
-        console.log("numOfOpenedChest: ", numOfOpenedChest);
       }
       const getNumberOfOpenedChest = () => {
         return 
