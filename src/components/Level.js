@@ -15,29 +15,30 @@ export const Level = ({currentLevel, updatePoints , handleNextLevel, levelPrizes
 
     //const updateLevelBG = () => {   
       console.log('updateLevelBG', currentLevel); 
-      let audioUrl = './sfx/level_1/26951076_fishing-boat-at-sea_by_mattpear_preview.mp3';
+      let audioUrl = './sfx/level_1/Fishing_Boat_at_Sea.mp3';
+
       switch(currentLevel) {
         case 1:
           currentAnimation = animation1;
-          audioUrl = "./sfx/level_1/26951076_fishing-boat-at-sea_by_mattpear_preview.mp3"
+          audioUrl = "./sfx/level_1/Fishing_Boat_at_Sea.mp3"
           break;
         case 2:
           currentAnimation = animation2;
-          audioUrl = "./sfx/level_2/21406950_sea-waves-sound_by_as-mediagroup_preview.mp3"
+          audioUrl = "./sfx/level_2/main.mp3"
           break;
         case 3:
           currentAnimation = animation3;
-          audioUrl = "./sfx/level_3/34152785_jungle-sounds_by_promission_preview.mp3"
+          audioUrl = "./sfx/level_3/Jungle Sounds.wav"
           break;       
         default:     
           currentAnimation = animation1;
-          audioUrl = "./sfx/level_1/26951076_fishing-boat-at-sea_by_mattpear_preview.mp3"
+          audioUrl = "./sfx/level_1/Fishing_Boat_at_Sea.mp3"
       }
       
     //levelAudio.current = new Audio(audioUrl);
     
     const [levelAudio, setLevelAudio] = useState(new Audio(audioUrl));
-
+    const [nextAudio, setNextAudio] = useState(new Audio("./sfx/nextLevel/Positive Game Win.mp3"));
     const [ myAnimationData, setMyAnimationData ]= useState(currentAnimation);
 
     console.log('levelPrizes:', levelPrizes );
@@ -50,8 +51,8 @@ export const Level = ({currentLevel, updatePoints , handleNextLevel, levelPrizes
           animationData: myAnimationData
         });
         
-        bgAnim.setSpeed(1);
-        console.log(bgAnim);
+        // bgAnim.setSpeed(1);
+        // console.log(bgAnim);
         
         levelAudio.play();
 
@@ -67,6 +68,7 @@ export const Level = ({currentLevel, updatePoints , handleNextLevel, levelPrizes
 
       const handleBtnClick = (e) => {
         e.preventDefault();
+        nextAudio.play();
         handleNextLevel();
       }
       const chestClicked = () => {
@@ -81,11 +83,14 @@ export const Level = ({currentLevel, updatePoints , handleNextLevel, levelPrizes
     return (        
         <div className="level-animation-container" ref={animationContainer}>
           <div className='chests'>            
-            <ChestClass key='1dsa' customClass="k1" bonusPoints={levelPrizes} numOpenedChest={numOfOpenedChest} onClickEl={() => { chestClicked()}} />
-            <ChestClass key='1dsad' customClass="k2" bonusPoints={levelPrizes} numOpenedChest={numOfOpenedChest}  onClickEl={() => { chestClicked()}} />
-            <ChestClass key='1dsac' customClass="k3" bonusPoints={levelPrizes} numOpenedChest={numOfOpenedChest}  onClickEl={() => { chestClicked()}} />  
+            <div className='chests-container'>
+              <ChestClass key='1dsa' customClass="k1" bonusPoints={levelPrizes} numOpenedChest={numOfOpenedChest} onClickEl={() => { chestClicked()}} />
+              <ChestClass key='1dsad' customClass="k2" bonusPoints={levelPrizes} numOpenedChest={numOfOpenedChest}  onClickEl={() => { chestClicked()}} />
+              <ChestClass key='1dsac' customClass="k3" bonusPoints={levelPrizes} numOpenedChest={numOfOpenedChest}  onClickEl={() => { chestClicked()}} />  
+            </div>
           </div>      
-          {isChestOpen && currentLevel<4  &&  <button className='button_next' onClick={handleBtnClick}>Next Level </button>}           
+          {isChestOpen && currentLevel<3  &&  <button className='btn button_next' onClick={handleBtnClick}><img src="./images/btns/sledeci_nivo.png" /> </button>}           
+          {isChestOpen && currentLevel === 3  &&  <button className='btn button_getbonus' onClick={handleBtnClick}><img src="./images/btns/PREBACI_BONUS.png" /> </button>}           
         </div>
     )
 }

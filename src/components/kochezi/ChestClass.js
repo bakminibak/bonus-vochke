@@ -10,8 +10,8 @@ import emptyChestAnim from '../../animations/kovceg_prazen.json';
 export default class ChestClass extends Component {
   constructor(props) {
     super(props);
-    this.audioChestEmpty = new Audio("./sfx/welcome/24248607_slot-game-win_by_gamechestaudio_preview.mp3")
-    this.audioBtn = new Audio("./sfx/nextLevel/32669778_positive-game-win_by_gamechestaudio_preview.mp3")
+    this.audioBtn = new Audio("./sfx/chest_full/Game Win 2.mp3")
+    this.audioChestEmpty = new Audio("./sfx/chest_empty/Game Win.mp3")
     this.animationContainer = React.createRef();
     this.animationContainerEmpty = React.createRef();
     this.chestAnim = null;
@@ -25,11 +25,8 @@ export default class ChestClass extends Component {
     }  
     this.points = this.props.bonusPoints[this.props.numOpenedChest];
     this.chestAnimation = fullChestAnim;
-
-    console.log(" this.bonusPoints:", this.props.bonusPoints);
-    console.log(" this.bonusPoints2:", this.props.numOpenedChest);
-    console.log(" this.bonusPoints3:", this.points);
   }
+
   componentDidMount() {
     console.log("MOUNT", this.state.isChestClicked);
     
@@ -54,7 +51,7 @@ export default class ChestClass extends Component {
   }
   openChest() {
     //setMyClassName("points show");
-    (Number(this.props.bonusPoints) > 0) ? this.audioBtn.play() : this.audioChestEmpty.play();
+    //(Number(this.props.bonusPoints) > 0) ? this.audioBtn.play() : this.audioChestEmpty.play();
 
     this.setState({
       myclassname: 'points show',
@@ -77,9 +74,11 @@ export default class ChestClass extends Component {
         if (this.points>0){
           this.chestAnim.play();
           this.setState({showFullChest: true});
+          this.audioBtn.play();
         } else {
           this.setState({showFullChest: false});
           this.chestAnimEmpty.play();
+          this.audioChestEmpty.play();
         }
         //mainAnim.play();
         
@@ -91,7 +90,7 @@ export default class ChestClass extends Component {
   }
   render() {
     return (
-      <div className='kovcheg-wrapper'>
+      <div className='chest-wrapper'>
         <div className={"chest "+this.props.customClass} onClick={this.handleClick.bind(this)}>
             <div  id={this.props.customClass} className={'kovcheg-anim_full '+!!this.state.showFullChest} ref={this.animationContainer}></div>
             <div  id={'e-'+this.props.customClass} className={'kovcheg-anim_full '+!this.state.showFullChest} ref={this.animationContainerEmpty}></div>

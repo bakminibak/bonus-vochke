@@ -8,7 +8,7 @@ export const WelcomeDesk = ({updateLevel}) => {
     const [startBtnVisibility, setStartBtnVisibility] = useState('hide');
 
     const audioWelcome = new Audio("./sfx/welcome/24248607_slot-game-win_by_gamechestaudio_preview.mp3")
-    const audioBtn = new Audio("./sfx/nextLevel/32669778_positive-game-win_by_gamechestaudio_preview.mp3")
+    const audioBtn = new Audio("./sfx/nextLevel/Positive Game Win.mp3");
 
     React.useEffect(() => {
         const anim = Lottie.loadAnimation({
@@ -40,7 +40,7 @@ export const WelcomeDesk = ({updateLevel}) => {
             <div className="welcome-scr-animation" ref={animationContainer}>
             </div>
             
-            <div className='btn'>
+            <div className='btn '>
                 <img className={'start_btn '+startBtnVisibility} src='./images/btns/IGRAJ.png'  onClick={startGame} />
             </div>
         </div>

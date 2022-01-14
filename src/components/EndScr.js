@@ -6,8 +6,10 @@ import endAnimationData from '../animations/endScr.json';
 export const EndScr = ({totalPoints, handleNextLevel}) => {
     const animContainer = React.createRef();
 
+    const audioBtn = new Audio("./sfx/nextLevel/Positive Game Win.mp3");
     const handleBtnClick = () => {        
         //updateLevel(-1);
+        audioBtn.play();
         handleNextLevel();
     }
 
@@ -27,7 +29,7 @@ export const EndScr = ({totalPoints, handleNextLevel}) => {
             
                 <div class="finalPoints">Osvoji li ste {totalPoints}</div>       
             </div>        
-            <button className='button_start' onClick={handleBtnClick}>RestStart Level </button>             
+            <button className='btn button_check_account' onClick={handleBtnClick}><img src="./images/btns/proveri nalog.png" />  </button>             
         </div>
     )
 }

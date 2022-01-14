@@ -5,11 +5,12 @@ import infoAnimationData from '../../animations/infoScr.json';
 export const IntroAnimation = ({updateLevel}) => {
     
 
+    const audioBtn = new Audio("./sfx/nextLevel/Positive Game Win.mp3");
     const animContainer = React.createRef();
 
 
     const handleBtnClick = () => {
-        
+        audioBtn.play();
         updateLevel(1);
     }
 
@@ -27,7 +28,8 @@ export const IntroAnimation = ({updateLevel}) => {
             <div className='c-container' ref={animContainer}>            
             </div>
             
-            <button className='button_start' onClick={handleBtnClick}>Start Level </button> 
+            <button className='btn button_start' onClick={handleBtnClick}><img src='../../images/btns/kreni_u_pohod.png' /></button> 
+            
         </div>
     )
 }

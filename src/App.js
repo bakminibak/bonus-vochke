@@ -14,7 +14,7 @@ import {EndScr} from './components/EndScr';
 function App() {
   //const animationContainer = useRef(null);
   const [totalPoints, setTotalPoints] = useState(0);
-  const [currentLevel, setCurrentlevel] = useState(4); //default -1
+  const [currentLevel, setCurrentlevel] = useState(0); //default -1
   const [numChestOpened, setNumChestOpened] = useState(0);
   const [showInfoScr, setShowInfoScr] = useState(false);
 
