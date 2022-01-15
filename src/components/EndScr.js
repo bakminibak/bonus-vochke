@@ -25,9 +25,8 @@ export const EndScr = ({totalPoints, handleNextLevel}) => {
 
     return (
         <div>
-            <div className='c-container' ref={animContainer}>     
-            
-                <div class="finalPoints">Osvoji li ste {totalPoints}</div>       
+            <div className='c-container' ref={animContainer}>                 
+                <div className="finalPoints">Osvoji li ste {totalPoints}</div>       
             </div>        
             <button className='btn button_check_account' onClick={handleBtnClick}><img src="./images/btns/proveri nalog.png" />  </button>             
         </div>

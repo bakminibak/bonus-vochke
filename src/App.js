@@ -14,25 +14,37 @@ import {EndScr} from './components/EndScr';
 function App() {
   //const animationContainer = useRef(null);
   const [totalPoints, setTotalPoints] = useState(0);
-  const [currentLevel, setCurrentlevel] = useState(-1); //default -1
+  const [currentLevel, setCurrentlevel] = useState(4); //default -1 - Welcome Scr
   const [numChestOpened, setNumChestOpened] = useState(0);
-  const [showInfoScr, setShowInfoScr] = useState(false);
+  // const [showInfoScr, setShowInfoScr] = useState(false);
+  
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [items, setItems] = useState([]);
 
   const levelPrizes = [
                         [500, -200, -50],
                         [100, 100, -500],
                         [-100, 2500, 500]];
-  
 
-
-  const introLevelChecked = () => {
-    console.log("introLevelChecked");
+  const getChestReward = (level) => {
+    fetch("https://api.example.com/items")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setItems(result);
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
   }
 
-  const chestOpened = (chestClicked) => {
-    console.log("Chest Opened!", numChestOpened, chestClicked);
-
-  }
   const animatePoints = (_points) => {
     let _toPoints = totalPoints + _points;
   }
@@ -40,29 +52,13 @@ function App() {
     let _points = Number(levelPrizes[currentLevel-1][numChestOpened]);
     
     setNumChestOpened(numChestOpened+1);
-    animatePoints(_points);
+    //animatePoints(_points);
     setTotalPoints(totalPoints + _points);
-    
-    
-    console.log("updateTotalPoints: ", _points, totalPoints);
   }
   const updateLevel = (level) => {
-    console.log("updateLevel");
     setCurrentlevel(level);
   }
-
-  const chestClicked = () => {
-    console.log("setIsChestOpen:");
-    
-    setNumChestOpened(numChestOpened+1);
-    //setIsChestOpen(true);
-  }
-  const handleClick = () => {
-    console.log('app');
-    loadNextLevel();
-  }
   const loadNextLevel = () => {
-    console.log("loadNesxtLEvel: ", currentLevel);    
     setNumChestOpened(0);
     (currentLevel < 4) ? setCurrentlevel(currentLevel+1) : setCurrentlevel(-1);
   }

@@ -53,7 +53,7 @@ export const Level = ({currentLevel, updatePoints , handleNextLevel, levelPrizes
         
         // bgAnim.setSpeed(1);
         // console.log(bgAnim);
-        
+        levelAudio.loop = true;
         levelAudio.play();
 
         return () => { // --> componentWillUnmount
