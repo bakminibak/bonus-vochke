@@ -94,7 +94,7 @@ export default class ChestClass extends Component {
         <div className={"chest "+this.props.customClass} onClick={this.handleClick.bind(this)}>
             <div  id={this.props.customClass} className={'kovcheg-anim_full '+!!this.state.showFullChest} ref={this.animationContainer}></div>
             <div  id={'e-'+this.props.customClass} className={'kovcheg-anim_full '+!this.state.showFullChest} ref={this.animationContainerEmpty}></div>
-            <div className={this.state.myclassname}>{this.points}</div>   
+            <div className={this.state.myclassname}>{this.points}%<br/><span class="small-text"> BONUS</span></div>   
             <div className={this.state.displayFinger}>
               <Finger />
             </div>

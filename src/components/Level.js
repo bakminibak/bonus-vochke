@@ -28,7 +28,7 @@ export const Level = ({currentLevel, updatePoints , handleNextLevel, levelPrizes
           break;
         case 3:
           currentAnimation = animation3;
-          audioUrl = "./sfx/level_3/Jungle Sounds.wav"
+          audioUrl = "./sfx/level_3/Jungle-Sounds.mp3"
           break;       
         default:     
           currentAnimation = animation1;

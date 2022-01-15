@@ -28,7 +28,7 @@ export const IntroAnimation = ({updateLevel}) => {
             <div className='c-container' ref={animContainer}>            
             </div>
             
-            <button className='btn button_start' onClick={handleBtnClick}><img src='../../images/btns/kreni_u_pohod.png' /></button> 
+            <button className='btn button_start' onClick={handleBtnClick}><img src='../../images/btns/IGRAJ.png' /></button> 
             
         </div>
     )

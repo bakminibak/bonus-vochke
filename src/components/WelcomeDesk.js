@@ -41,7 +41,7 @@ export const WelcomeDesk = ({updateLevel}) => {
             </div>
             
             <div className='btn '>
-                <img className={'start_btn '+startBtnVisibility} src='./images/btns/IGRAJ.png'  onClick={startGame} />
+                <img className={'start_btn '+startBtnVisibility} src='./images/btns/kreni_u_pohod.png'  onClick={startGame} />
             </div>
         </div>
     )
