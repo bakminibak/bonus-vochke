@@ -9,30 +9,24 @@ export const IntroAnimationMobile = ({updateLevel}) => {
     const audioBtn = new Audio("./sfx/nextLevel/Positive Game Win.mp3");
     const animContainerScr1 = React.createRef();
     const animContainerScr2 = React.createRef();
-    const [introAnimation, setIntroAniamtion] = useState(infoAnimationData1);
-    const [currentScr, setCurrentScr] = useState(1);
+    const [currentScrState, setCurrentScr] = useState(1);
 
 
     const handleBtnClick = () => {
-        audioBtn.play();
-        
-        console.log("currentScr1: ", currentScr);
-        if (currentScr === 1) {
-            
-            setCurrentScr(2);
-            setIntroAniamtion(infoAnimationData2);
+        console.log("currentScr1: ", currentScrState);
+        if (currentScrState === 1) {
+            //setIntroAniamtion(infoAnimationData2);
 
-            const mainAnim2 = Lottie.loadAnimation({
-                container: animContainerScr1.current,
-                animationData: infoAnimationData2,
-                autoplay: true,
-                loop: false
-            }); 
+            
             } 
         else updateLevel(1);
         //currentScr = 2;
-        setCurrentScr(2);
-        console.log("currentScr2: ", currentScr);
+        //setCurrentScr(currentScrState + 1);
+        setCurrentScr(currentScrState => currentScrState + 1)
+        console.log("currentScr2: ", currentScrState);
+        
+        audioBtn.play();
+        
         //setIntroAniamtion(infoAnimationData2)
         
     }
@@ -44,14 +38,21 @@ export const IntroAnimationMobile = ({updateLevel}) => {
             autoplay: true,
             loop: false
           }); 
+          const mainAnim2 = Lottie.loadAnimation({
+            container: animContainerScr2.current,
+            animationData: infoAnimationData2,
+            autoplay: false,
+            loop: false
+        }); 
+        mainAnim2.play();
     }, []);
      
     return (
         <div>
-            {currentScr === 1 && <div className='c-container' ref={animContainerScr1} onClick={handleBtnClick}></div> }
-            {currentScr === 2 && <div className='c-container' ref={animContainerScr2}></div> }
+            {currentScrState === 1 && <div className='c-container' ref={animContainerScr1} onClick={handleBtnClick}></div> }
+            {currentScrState === 2 && <div className='c-container' ref={animContainerScr2}></div> }
             
-            {currentScr === 2 && <button className='btn button_start' onClick={handleBtnClick}><img src='../../images/btns/IGRAJ.png' /></button> }
+            {currentScrState === 2 && <button className='btn button_start' onClick={handleBtnClick}><img src='../../images/btns/IGRAJ.png' /></button> }
             
         </div>
     )
