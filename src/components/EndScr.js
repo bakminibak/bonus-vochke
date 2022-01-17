@@ -14,7 +14,7 @@ export const EndScr = ({totalPoints, handleNextLevel}) => {
     }
 
     useEffect(() => {
-        console.log("useEffect EndScr", animContainer);
+        //console.log("useEffect EndScr", animContainer);
         const mainAnim = Lottie.loadAnimation({
             container: animContainer.current,
             animationData: endAnimationData,

@@ -1,23 +1,48 @@
-import React,{ useState} from 'react';
+import React,{ useState, useEffect} from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-//import { Level1 } from './components/Level1';
-//import { Level2 } from './components/Level2';
-//import { Level3 } from './components/Level3';
 import { Level } from './components/Level';
 import { LevelPoints } from './components/LevelPoints';
 import { WelcomeDesk } from './components/WelcomeDesk';
 import { IntroAnimation } from './components/IntroAnimationDesk/IntroAnimation';
 import {EndScr} from './components/EndScr';
 
+
+import { WelcomeDeskMobile } from './components/WelcomeDesk_Mobile';
+import { IntroAnimationMobile } from './components/introMobile/IntroAnimationMobile';
+
+function useWindowSize() {
+  //const [size, setSize] = useState([window.innerHeight, window.innerWidth]);
+  const [deviceOrientation, setDeviceOrientation] = useState(0); /* 0/1 landscape/portrait */
+
+  useEffect(() => {
+    const handleResize = () => {
+      console.log(window.innerHeight, window.innerWidth);
+      //setSize([[window.innerHeight, window.innerWidth]])
+
+      if (window.innerHeight > window.innerWidth) setDeviceOrientation(1)
+      else setDeviceOrientation(0)
+    }
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    }
+  }, [])
+  return deviceOrientation;
+}
+
 function App() {
   //const animationContainer = useRef(null);
   const [totalPoints, setTotalPoints] = useState(0);
-  const [currentLevel, setCurrentlevel] = useState(4); //default -1 - Welcome Scr
+  const [currentLevel, setCurrentlevel] = useState(-1); //default -1 - Welcome Scr
   const [numChestOpened, setNumChestOpened] = useState(0);
   // const [showInfoScr, setShowInfoScr] = useState(false);
   
+  const orentation = useWindowSize();
+  
+    
+
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
@@ -67,14 +92,24 @@ function App() {
       <header className="App-header">
       </header>
       <main>
-        { currentLevel === -1 && <WelcomeDesk updateLevel={updateLevel} /> }
-        { currentLevel === 0 && <IntroAnimation  updateLevel={updateLevel}  /> }        
-        { currentLevel === 1 && <Level updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel} handleNextLevel={() => { loadNextLevel()}} /> }
-        { currentLevel === 2 && <Level updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel}  handleNextLevel={() => { loadNextLevel()}}  /> }
-        { currentLevel === 3 && <Level updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel}  handleNextLevel={() => { loadNextLevel()}}  /> }
-        { currentLevel > 0 && currentLevel < 4 &&<LevelPoints totalPoints={totalPoints} />  }      
-        { currentLevel > 3 && <EndScr totalPoints={totalPoints} handleNextLevel={() => { loadNextLevel()}} />}       
-        
+        <div className='portrait'>
+          { orentation && currentLevel === -1 && <WelcomeDeskMobile updateLevel={updateLevel} /> }
+          { orentation && currentLevel === 0 && <IntroAnimationMobile  updateLevel={updateLevel}  /> }        
+          { orentation && currentLevel === 1 && <Level updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel} handleNextLevel={() => { loadNextLevel()}} /> }
+          { orentation && currentLevel === 2 && <Level updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel}  handleNextLevel={() => { loadNextLevel()}}  /> }
+          { orentation && currentLevel === 3 && <Level updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel}  handleNextLevel={() => { loadNextLevel()}}  /> }
+          { orentation && currentLevel > 0 && currentLevel < 4 && <LevelPoints totalPoints={totalPoints} />  }      
+          { orentation && currentLevel > 3 && <EndScr totalPoints={totalPoints} handleNextLevel={() => { loadNextLevel()}} />}               
+        </div>
+        <div className='landscape'>
+          { !orentation && currentLevel === -1 && <WelcomeDesk updateLevel={updateLevel} /> }
+          { !orentation && currentLevel === 0 && <IntroAnimation  updateLevel={updateLevel}  /> }        
+          { !orentation && currentLevel === 1 && <Level updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel} handleNextLevel={() => { loadNextLevel()}} /> }
+          { !orentation && currentLevel === 2 && <Level updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel}  handleNextLevel={() => { loadNextLevel()}}  /> }
+          { !orentation && currentLevel === 3 && <Level updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel}  handleNextLevel={() => { loadNextLevel()}}  /> }
+          { !orentation && currentLevel > 0 && currentLevel < 4 && <LevelPoints totalPoints={totalPoints} />  }      
+          { !orentation && currentLevel > 3 && <EndScr totalPoints={totalPoints} handleNextLevel={() => { loadNextLevel()}} />} 
+        </div>
       </main>
     </div>
   );
