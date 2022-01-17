@@ -7,7 +7,7 @@ export const WelcomeDesk = ({updateLevel}) => {
 
     const [startBtnVisibility, setStartBtnVisibility] = useState('hide');
 
-    const audioWelcome = new Audio("./sfx/welcome/24248607_slot-game-win_by_gamechestaudio_preview.mp3")
+    const audioWelcome = new Audio("./sfx/welcome/Slot Game Win.mp3")
     const audioBtn = new Audio("./sfx/nextLevel/Positive Game Win.mp3");
 
     React.useEffect(() => {
@@ -16,10 +16,6 @@ export const WelcomeDesk = ({updateLevel}) => {
           animationData: animation,
           loop: false
         });
-        
-        
-        //anim.setSpeed(1);
-        console.log(anim);
         const timer = setTimeout(() => {
             console.log('This will run after 1 second!');
             setStartBtnVisibility('show');

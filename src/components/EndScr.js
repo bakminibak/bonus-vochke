@@ -7,6 +7,7 @@ export const EndScr = ({totalPoints, handleNextLevel}) => {
     const animContainer = React.createRef();
 
     const audioBtn = new Audio("./sfx/nextLevel/Positive Game Win.mp3");
+    const audioWelcome = new Audio("./sfx/welcome/Slot Game Win.mp3")
     const handleBtnClick = () => {        
         //updateLevel(-1);
         audioBtn.play();
@@ -21,6 +22,12 @@ export const EndScr = ({totalPoints, handleNextLevel}) => {
             autoplay: true,
             loop: false
         }); 
+        
+        const timer = setTimeout(() => {
+            console.log('This will run after 1 second!');
+            audioWelcome.play();
+          }, 1000);
+          return () => clearTimeout(timer);
     });
 
     return (

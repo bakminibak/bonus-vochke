@@ -11,24 +11,10 @@ export const IntroAnimationMobile = ({updateLevel}) => {
     const animContainerScr2 = React.createRef();
     const [currentScrState, setCurrentScr] = useState(1);
 
-
     const handleBtnClick = () => {
-        console.log("currentScr1: ", currentScrState);
-        if (currentScrState === 1) {
-            //setIntroAniamtion(infoAnimationData2);
-
-            
-            } 
-        else updateLevel(1);
-        //currentScr = 2;
-        //setCurrentScr(currentScrState + 1);
-        setCurrentScr(currentScrState => currentScrState + 1)
-        console.log("currentScr2: ", currentScrState);
-        
+        if (currentScrState === 2)  updateLevel(1);
+        setCurrentScr(currentScrState + 1);        
         audioBtn.play();
-        
-        //setIntroAniamtion(infoAnimationData2)
-        
     }
 
     useEffect(() => {
@@ -38,14 +24,20 @@ export const IntroAnimationMobile = ({updateLevel}) => {
             autoplay: true,
             loop: false
           }); 
+    
           const mainAnim2 = Lottie.loadAnimation({
             container: animContainerScr2.current,
             animationData: infoAnimationData2,
             autoplay: false,
             loop: false
         }); 
-        mainAnim2.play();
-    }, []);
+        if (currentScrState === 2) {
+            //setIntroAniamtion(infoAnimationData2);
+                      
+            mainAnim2.play();
+            
+            } 
+    }, [currentScrState]);
      
     return (
         <div>
