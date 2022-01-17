@@ -1,12 +1,15 @@
 import React,{ useState, useEffect} from 'react';
+import { BrowserView, MobileView, isBrowser, isMobile } from 'react-device-detect';
 import logo from './logo.svg';
 import './App.css';
 
 import { Level } from './components/Level';
+import { LevelMobile } from './components/LevelMobile';
 import { LevelPoints } from './components/LevelPoints';
 import { WelcomeDesk } from './components/WelcomeDesk';
 import { IntroAnimation } from './components/IntroAnimationDesk/IntroAnimation';
 import {EndScr} from './components/EndScr';
+import {EndScrMobile} from './components/EndScrMobile';
 
 
 import { WelcomeDeskMobile } from './components/WelcomeDesk_Mobile';
@@ -95,11 +98,11 @@ function App() {
         <div className='portrait'>
           { orentation && currentLevel === -1 && <WelcomeDeskMobile updateLevel={updateLevel} /> }
           { orentation && currentLevel === 0 && <IntroAnimationMobile  updateLevel={updateLevel}  /> }        
-          { orentation && currentLevel === 1 && <Level updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel} handleNextLevel={() => { loadNextLevel()}} /> }
-          { orentation && currentLevel === 2 && <Level updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel}  handleNextLevel={() => { loadNextLevel()}}  /> }
-          { orentation && currentLevel === 3 && <Level updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel}  handleNextLevel={() => { loadNextLevel()}}  /> }
+          { orentation && currentLevel === 1 && <LevelMobile updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel} handleNextLevel={() => { loadNextLevel()}} /> }
+          { orentation && currentLevel === 2 && <LevelMobile updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel}  handleNextLevel={() => { loadNextLevel()}}  /> }
+          { orentation && currentLevel === 3 && <LevelMobile updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel}  handleNextLevel={() => { loadNextLevel()}}  /> }
           { orentation && currentLevel > 0 && currentLevel < 4 && <LevelPoints totalPoints={totalPoints} />  }      
-          { orentation && currentLevel > 3 && <EndScr totalPoints={totalPoints} handleNextLevel={() => { loadNextLevel()}} />}               
+          { orentation && currentLevel > 3 && <EndScrMobile totalPoints={totalPoints} handleNextLevel={() => { loadNextLevel()}} />}               
         </div>
         <div className='landscape'>
           { !orentation && currentLevel === -1 && <WelcomeDesk updateLevel={updateLevel} /> }

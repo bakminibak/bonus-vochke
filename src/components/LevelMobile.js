@@ -1,8 +1,8 @@
 import React, { useState, useRef } from 'react'
 import Lottie from 'lottie-web';
-import animation1 from '../animations/nivo1_bg.json';
-import animation2 from '../animations/nivo2_bg.json';
-import animation3 from '../animations/nivo3_bg.json';
+import animation1 from '../mobile-animations/level1.json';
+import animation2 from '../mobile-animations/level2.json';
+import animation3 from '../mobile-animations/level3.json';
 import ChestClass from './kochezi/ChestClass';
 //import { Chest } from './kochezi/Chest';
 
