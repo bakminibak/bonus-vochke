@@ -10,7 +10,7 @@ import ChestClass from './kochezi/ChestClass';
 export const LevelMobile = ({currentSession, bonusMasterOpen, currentLevel, updatePoints , handleNextLevel, levelPrizes}) => {
     const animationContainer = React.createRef()
     const [isChestOpen, setIsChestOpen] = useState(false);
-    const [numOfOpenedChest, setNumberOfOpenedChests] = useState(0)
+    const [numOfOpenedChest, setNumberOfOpenedChests] = useState(0);
     const [bonusPoints, setBonusPoints] = useState(0);
     const [openedChests, setOpenedChests] = useState(0);
     let  currentAnimation=null;

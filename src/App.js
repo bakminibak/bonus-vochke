@@ -139,7 +139,8 @@ function App() {
       <main>
         <MobileView className='portrait'>
           {currentLevel === -2 && <Login updateLevel={updateLevel} login={login()} register={register()} createSession={createSession()} /> }
-          {currentLevel === 0 && <IntroAnimationMobile  updateLevel={updateLevel}  /> }        
+          {/* {currentLevel === -1 && <WelcomeDeskMobile updateLevel={updateLevel} /> } */}
+          {(currentLevel === -1 || currentLevel === 0) && <IntroAnimationMobile  updateLevel={updateLevel}  /> }        
           {currentLevel === 1 && <LevelMobile updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel} currentSession={currentSession} bonusMasterOpen={bonusMasterOpen()} handleNextLevel={() => { loadNextLevel()}} /> }
           {currentLevel === 2 && <LevelMobile updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel} currentSession={currentSession} bonusMasterOpen={bonusMasterOpen()} handleNextLevel={() => { loadNextLevel()}}  /> }
           {currentLevel === 3 && <LevelMobile updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel} currentSession={currentSession} bonusMasterOpen={bonusMasterOpen()} handleNextLevel={() => { loadNextLevel()}}  /> }

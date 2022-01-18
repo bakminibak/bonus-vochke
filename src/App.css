@@ -62,6 +62,11 @@ main {
     margin: auto;
 }
 
+.portrait .intro-heading {
+  width: 65%;
+  top: 12%;
+}
+
 .intro-heading-totalbonus {
   font-size: clamp(20px, 4vw, 34px);
   color: yellow;
