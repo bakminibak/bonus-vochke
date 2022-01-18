@@ -1,6 +1,5 @@
-import React,{ useState, useEffect} from 'react';
-import { BrowserView, MobileView, isBrowser, isMobile } from 'react-device-detect';
-import logo from './logo.svg';
+import React,{ useState } from 'react';
+import { BrowserView, MobileView, isMobile } from 'react-device-detect';
 import './App.css';
 
 import { Level } from './components/Level';
@@ -10,7 +9,8 @@ import { WelcomeDesk } from './components/WelcomeDesk';
 import { IntroAnimation } from './components/IntroAnimationDesk/IntroAnimation';
 import {EndScr} from './components/EndScr';
 import {EndScrMobile} from './components/EndScrMobile';
-
+import { Login } from './components/Login';
+import getAxiosInstance from "./config/http";
 
 import { WelcomeDeskMobile } from './components/WelcomeDesk_Mobile';
 import { IntroAnimationMobile } from './components/introMobile/IntroAnimationMobile';
@@ -19,7 +19,8 @@ import { IntroAnimationMobile } from './components/introMobile/IntroAnimationMob
 function App() {
   //const animationContainer = useRef(null);
   const [totalPoints, setTotalPoints] = useState(0);
-  const [currentLevel, setCurrentlevel] = useState(-1); //default -1 - Welcome Scr
+  const [currentLevel, setCurrentlevel] = useState(-2); //default -1 - Welcome Scr
+  const [currentSession, setCurrentSession] = useState({});
   const [numChestOpened, setNumChestOpened] = useState(0);
   // const [showInfoScr, setShowInfoScr] = useState(false);
   
@@ -31,38 +32,98 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
 
-  const levelPrizes = [
-                        [500, -200, -50],
-                        [100, 100, -500],
-                        [-100, 2500, 500]];
+  const [levelPrizes, setLevelPrizes] = useState([
+                                                  [500, -200, -50],
+                                                  [100, 100, -500],
+                                                  [-100, 2500, 500]]);
 
-  const getChestReward = (level) => {
-    fetch("https://api.example.com/items")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          setIsLoaded(true);
-          setItems(result);
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      )
-  }
+  // Adding login, register and createSession logic based on strapi request.
+  const login = () => async (userData) => {
+    const http = getAxiosInstance();
+    try {
+      const { data } = await http.post("/auth/local-simple", userData);
+      http.defaults.headers.common["Authorization"] = `bearer ${data.jwt}`;
+      return data;
+    } catch (e) {
+      console.log(e);
+      throw e;
+    }
+  };
+
+  const register = () => async (userData) => {
+    const http = getAxiosInstance();
+    try {
+      const { data } = await http.post("/auth/local-simple/register", userData);
+      return data;
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const createSession = () => async (requestData) => {
+    const http = getAxiosInstance();
+    try {
+      const { data } = await http.post("/game-sessions", requestData);
+      setCurrentSession(data);
+      return data;
+    } catch (e) {
+      throw e;
+    }
+  };
+
+  // End of adding login, register and createSession.
+
+  // Adding open chest logic based on strapi request.
+  const bonusMasterOpen = (params) => async (params) => {
+    // console.log(params);
+    setIsLoaded(false);
+    const http = getAxiosInstance();
+    let _levelPrizes = [];
+    try {
+      const { data } = await http.post(
+        "/merkurbet/bonusMaster/open",
+        {},
+        { params }
+      );
+      console.log("bonusMasterOpen:",data);
+      updateTotalPoints(data.gameState.points, data.gameState.totalPoints);
+      for (let i=0; i < 3; i++) {
+        _levelPrizes.push([data.gameState.points, data.gameState.points, data.gameState.points]);
+      }
+      setLevelPrizes(_levelPrizes);
+      setIsLoaded(true);
+      return data;
+    } catch (e) {
+      setIsLoaded(true);
+      setError(e);
+      // throw e;
+    }
+  };
+  // End of adding open chest logic.
+
+  // React.useEffect(() => {
+  //   if (isLoaded)
+  //     updateTotalPoints();
+  // }, [isLoaded])
 
   const animatePoints = (_points) => {
     let _toPoints = totalPoints + _points;
   }
-  const updateTotalPoints = () => {
-    let _points = Number(levelPrizes[currentLevel-1][numChestOpened]);
+  // const updateTotalPoints = () => {
+  //   let _points = Number(levelPrizes[currentLevel-1][numChestOpened]);
+    
+  //   setNumChestOpened(numChestOpened+1);
+  //   //animatePoints(_points);
+  //   setTotalPoints(Number(totalPoints + _points));
+  //   console.log("updateTotalPoints:", _points, totalPoints + _points);
+  // }
+
+  const updateTotalPoints = (points, totalPoints) => {
+    let _points = Number(points);
     
     setNumChestOpened(numChestOpened+1);
     //animatePoints(_points);
-    setTotalPoints(totalPoints + _points);
+    setTotalPoints(Number(totalPoints));
   }
   const updateLevel = (level) => {
     setCurrentlevel(level);
@@ -77,20 +138,21 @@ function App() {
       </header>
       <main>
         <MobileView className='portrait'>
-          {currentLevel === -1 && <WelcomeDeskMobile updateLevel={updateLevel} /> }
+          {currentLevel === -2 && <Login updateLevel={updateLevel} login={login()} register={register()} createSession={createSession()} /> }
           {currentLevel === 0 && <IntroAnimationMobile  updateLevel={updateLevel}  /> }        
-          {currentLevel === 1 && <LevelMobile updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel} handleNextLevel={() => { loadNextLevel()}} /> }
-          {currentLevel === 2 && <LevelMobile updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel}  handleNextLevel={() => { loadNextLevel()}}  /> }
-          {currentLevel === 3 && <LevelMobile updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel}  handleNextLevel={() => { loadNextLevel()}}  /> }
+          {currentLevel === 1 && <LevelMobile updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel} currentSession={currentSession} bonusMasterOpen={bonusMasterOpen()} handleNextLevel={() => { loadNextLevel()}} /> }
+          {currentLevel === 2 && <LevelMobile updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel} currentSession={currentSession} bonusMasterOpen={bonusMasterOpen()} handleNextLevel={() => { loadNextLevel()}}  /> }
+          {currentLevel === 3 && <LevelMobile updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel} currentSession={currentSession} bonusMasterOpen={bonusMasterOpen()} handleNextLevel={() => { loadNextLevel()}}  /> }
           {currentLevel > 0 && currentLevel < 4 && <LevelPoints totalPoints={totalPoints} />  }      
           {currentLevel > 3 && <EndScrMobile totalPoints={totalPoints} handleNextLevel={() => { loadNextLevel()}} />}               
         </MobileView>
         <BrowserView className='landscape'>
+          {currentLevel === -2 && <Login updateLevel={updateLevel} login={login()} register={register()} createSession={createSession()} /> }
           {currentLevel === -1 && <WelcomeDesk updateLevel={updateLevel} /> }
           {currentLevel === 0 && <IntroAnimation  updateLevel={updateLevel}  /> }        
-          {currentLevel === 1 && <Level updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel} handleNextLevel={() => { loadNextLevel()}} /> }
-          {currentLevel === 2 && <Level updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel}  handleNextLevel={() => { loadNextLevel()}}  /> }
-          {currentLevel === 3 && <Level updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel}  handleNextLevel={() => { loadNextLevel()}}  /> }
+          {currentLevel === 1 && <Level updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel} currentSession={currentSession} bonusMasterOpen={bonusMasterOpen()} handleNextLevel={() => { loadNextLevel()}} /> }
+          {currentLevel === 2 && <Level updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel} currentSession={currentSession} bonusMasterOpen={bonusMasterOpen()} handleNextLevel={() => { loadNextLevel()}}  /> }
+          {currentLevel === 3 && <Level updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel} currentSession={currentSession} bonusMasterOpen={bonusMasterOpen()} handleNextLevel={() => { loadNextLevel()}}  /> }
           {currentLevel > 0 && currentLevel < 4 && <LevelPoints totalPoints={totalPoints} />  }      
           {currentLevel > 3 && <EndScr totalPoints={totalPoints} handleNextLevel={() => { loadNextLevel()}} />} 
         </BrowserView>

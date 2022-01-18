@@ -19,6 +19,7 @@ export default class ChestClass extends Component {
     this.state = {
       myclassname: 'points hide',
       isChestOpen: false,
+      currentActive: '',
       displayFinger: "HIDE",
       isChestClicked: false,
       isChestFull: false
@@ -49,6 +50,21 @@ export default class ChestClass extends Component {
   componentWillUnmount() {
     console.log("Bye");
   }
+  
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.currentActive == this.props.customClass && JSON.stringify(prevProps.bonusPoints) !== JSON.stringify(this.props.bonusPoints)) {
+      this.points = this.props.bonusPoints[this.props.numOpenedChest];
+      this.setState({
+        currentActive: ''
+      });
+    }
+  }
+
+  // componentWillUpdate(prevProps, prevState) {
+  //   console.log("prevProps & State: ", prevProps, prevState);
+  //   // this.points = this.props.bonusPoints[this.props.numOpenedChest];
+  // }
+
   openChest() {
     //setMyClassName("points show");
     //(Number(this.props.bonusPoints) > 0) ? this.audioBtn.play() : this.audioChestEmpty.play();
@@ -56,6 +72,7 @@ export default class ChestClass extends Component {
     this.setState({
       myclassname: 'points show',
       isChestOpen: true,
+      currentActive: this.props.customClass,
       displayFinger: 'hide',
       showFullChest: true
     });
@@ -64,6 +81,7 @@ export default class ChestClass extends Component {
     e.preventDefault();
     console.log('handleClick', this.state.isChestOpen);
     if (!this.state.isChestOpen) {
+        this.props.onClickEl();
         this.points = this.props.bonusPoints[this.props.numOpenedChest];
         console.log("playAnim Chest", this.points);     
         //this.setState({displayFinger: "hide"});
@@ -81,8 +99,6 @@ export default class ChestClass extends Component {
           this.audioChestEmpty.play();
         }
         //mainAnim.play();
-        
-        this.props.onClickEl();
         
     } else  {
       console.log("SKIP playAnim Chest");
