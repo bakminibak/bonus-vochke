@@ -142,6 +142,7 @@ function App() {
       <main>
         <MobileView className='mobile-view'>
           {!isSessionActive &&  <SessionEndMobile /> }
+          {currentLevel === -2 && <Login updateLevel={updateLevel} login={login()} register={register()} createSession={createSession()} /> }
           {currentLevel === -1 && <WelcomeDeskMobile updateLevel={updateLevel} /> }
           {currentLevel === 0 && <IntroAnimationMobile  updateLevel={updateLevel}  /> }        
           {currentLevel === 1 && <LevelMobile updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel} handleNextLevel={() => { loadNextLevel()}} /> }
@@ -152,6 +153,7 @@ function App() {
         </MobileView>
         <BrowserView className='desktop-view'>
           {!isSessionActive &&  <SessionEnd /> }
+          {currentLevel === -2 && <Login updateLevel={updateLevel} login={login()} register={register()} createSession={createSession()} /> }
           {currentLevel === -1 && <WelcomeDesk updateLevel={updateLevel} /> }
           {currentLevel === 0 && <IntroAnimation  updateLevel={updateLevel}  /> }        
           {currentLevel === 1 && <Level updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel} currentSession={currentSession} bonusMasterOpen={bonusMasterOpen()} handleNextLevel={() => { loadNextLevel()}} /> }
