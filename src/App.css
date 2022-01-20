@@ -1,9 +1,9 @@
 @font-face {
-  font-family: "CustomFont";
-  src: url("https://bonusmaster.re4m.com/css/Webfonts/MerkurSan.eot");
-  src: url("https://bonusmaster.re4m.com/css/Webfonts/MerkurSan.woff") format("woff"),
-  url("https://bonusmaster.re4m.com/css/Webfonts/MerkurSan.otf") format("opentype"),
-  url("https://bonusmaster.re4m.com/css/Webfonts/MerkurSan.svg#filename") format("svg");
+  font-family: "MerkurSan";
+  src: url("../public/css/Webfonts/EOT/MerkurSans-Regular.eot");
+  src: url("../public/css/Webfonts/WOFF/MerkurSans-Condensed.woff") format("woff"),
+  url("../public/css/Webfonts/WOFF2/MerkurSans-Condensed.woff2") format("woff2"),
+  url("../public/css/Webfonts/OTF/MerkurSans-Condensed.otf") format("opentype");
   }
 
 body {
