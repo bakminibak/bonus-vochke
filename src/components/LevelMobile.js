@@ -110,7 +110,7 @@ export const LevelMobile = ({currentSession, bonusMasterOpen, currentLevel, upda
             </div>
           </div>      
           {isChestOpen && currentLevel<3  &&  <button className='btn button_next' onClick={handleBtnClick}><img src="./images/btns/sledeci_nivo.png" /> </button>}           
-          {isChestOpen && currentLevel === 3  &&  <button className='btn button_getbonus' onClick={handleBtnClick}><img src="./images/btns/PREBACI_BONUS.png" /> </button>}           
+          {isChestOpen && currentLevel === 3  &&  <button className='btn button_endgame' onClick={handleBtnClick}><img src="./images/btns/endgame.png" /> </button>}           
         </div>
     )
 }

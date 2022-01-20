@@ -137,18 +137,16 @@ function App() {
       <header className="App-header">
       </header>
       <main>
-        <MobileView className='portrait'>
-          {currentLevel === -2 && <Login updateLevel={updateLevel} login={login()} register={register()} createSession={createSession()} /> }
-          {/* {currentLevel === -1 && <WelcomeDeskMobile updateLevel={updateLevel} /> } */}
-          {(currentLevel === -1 || currentLevel === 0) && <IntroAnimationMobile  updateLevel={updateLevel}  /> }        
-          {currentLevel === 1 && <LevelMobile updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel} currentSession={currentSession} bonusMasterOpen={bonusMasterOpen()} handleNextLevel={() => { loadNextLevel()}} /> }
-          {currentLevel === 2 && <LevelMobile updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel} currentSession={currentSession} bonusMasterOpen={bonusMasterOpen()} handleNextLevel={() => { loadNextLevel()}}  /> }
-          {currentLevel === 3 && <LevelMobile updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel} currentSession={currentSession} bonusMasterOpen={bonusMasterOpen()} handleNextLevel={() => { loadNextLevel()}}  /> }
+        <MobileView className='mobile-view'>
+          {currentLevel === -1 && <WelcomeDeskMobile updateLevel={updateLevel} /> }
+          {currentLevel === 0 && <IntroAnimationMobile  updateLevel={updateLevel}  /> }        
+          {currentLevel === 1 && <LevelMobile updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel} handleNextLevel={() => { loadNextLevel()}} /> }
+          {currentLevel === 2 && <LevelMobile updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel}  handleNextLevel={() => { loadNextLevel()}}  /> }
+          {currentLevel === 3 && <LevelMobile updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel}  handleNextLevel={() => { loadNextLevel()}}  /> }
           {currentLevel > 0 && currentLevel < 4 && <LevelPoints totalPoints={totalPoints} />  }      
           {currentLevel > 3 && <EndScrMobile totalPoints={totalPoints} handleNextLevel={() => { loadNextLevel()}} />}               
         </MobileView>
-        <BrowserView className='landscape'>
-          {currentLevel === -2 && <Login updateLevel={updateLevel} login={login()} register={register()} createSession={createSession()} /> }
+        <BrowserView className='desktop-view'>
           {currentLevel === -1 && <WelcomeDesk updateLevel={updateLevel} /> }
           {currentLevel === 0 && <IntroAnimation  updateLevel={updateLevel}  /> }        
           {currentLevel === 1 && <Level updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel} currentSession={currentSession} bonusMasterOpen={bonusMasterOpen()} handleNextLevel={() => { loadNextLevel()}} /> }

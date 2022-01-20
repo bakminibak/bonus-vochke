@@ -93,10 +93,13 @@ export default class ChestClass extends Component {
           this.chestAnim.play();
           this.setState({showFullChest: true});
           this.audioBtn.play();
+          // this.state.myclassname = 'points show ';
+          this.setState({myclassname: 'points show'});
         } else {
           this.setState({showFullChest: false});
           this.chestAnimEmpty.play();
           this.audioChestEmpty.play();
+          this.setState({myclassname: 'points show negative'});
         }
         //mainAnim.play();
         
@@ -110,7 +113,7 @@ export default class ChestClass extends Component {
         <div className={"chest "+this.props.customClass} onClick={this.handleClick.bind(this)}>
             <div  id={this.props.customClass} className={'kovcheg-anim_full '+!!this.state.showFullChest} ref={this.animationContainer}></div>
             <div  id={'e-'+this.props.customClass} className={'kovcheg-anim_full '+!this.state.showFullChest} ref={this.animationContainerEmpty}></div>
-            <div className={this.state.myclassname}>{this.points}%<br/><span className="small-text"> BONUS</span></div>   
+            <div className={this.state.myclassname}>{this.points}<span className='percent'>%</span> <br/><span className="small-text"> BONUS</span></div>   
             <div className={this.state.displayFinger}>
               <Finger />
             </div>

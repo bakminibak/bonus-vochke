@@ -40,7 +40,7 @@ export const WelcomeDeskMobile = ({updateLevel}) => {
             <div className="welcome-scr-animation" ref={animationContainer}>
             </div>
             
-            <div className='btn '>
+            <div className='btn btn-begin'>
                 <img className={'start_btn '+startBtnVisibility} src='./images/btns/kreni_u_pohod.png'  onClick={startGame} />
             </div>
         </div>
