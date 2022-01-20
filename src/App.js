@@ -10,7 +10,8 @@ import { WelcomeDesk } from './components/WelcomeDesk';
 import { IntroAnimation } from './components/IntroAnimationDesk/IntroAnimation';
 import {EndScr} from './components/EndScr';
 import {EndScrMobile} from './components/EndScrMobile';
-
+import {SessionEnd} from './components/SessionEnd';
+import {SessionEndMobile} from './components/SessionEnd_Mobile';
 
 import { WelcomeDeskMobile } from './components/WelcomeDesk_Mobile';
 import { IntroAnimationMobile } from './components/introMobile/IntroAnimationMobile';
@@ -19,8 +20,9 @@ import { IntroAnimationMobile } from './components/introMobile/IntroAnimationMob
 function App() {
   //const animationContainer = useRef(null);
   const [totalPoints, setTotalPoints] = useState(0);
-  const [currentLevel, setCurrentlevel] = useState(-1); //default -1 - Welcome Scr
+  const [currentLevel, setCurrentlevel] = useState(2); //default -1 - Welcome Scr
   const [numChestOpened, setNumChestOpened] = useState(0);
+  const [isSessionActive, setIsSessionActive] = useState(true);
   // const [showInfoScr, setShowInfoScr] = useState(false);
   
   const orentation = isMobile;
@@ -77,6 +79,7 @@ function App() {
       </header>
       <main>
         <MobileView className='mobile-view'>
+          {!isSessionActive &&  <SessionEndMobile /> }
           {currentLevel === -1 && <WelcomeDeskMobile updateLevel={updateLevel} /> }
           {currentLevel === 0 && <IntroAnimationMobile  updateLevel={updateLevel}  /> }        
           {currentLevel === 1 && <LevelMobile updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel} handleNextLevel={() => { loadNextLevel()}} /> }
@@ -86,6 +89,7 @@ function App() {
           {currentLevel > 3 && <EndScrMobile totalPoints={totalPoints} handleNextLevel={() => { loadNextLevel()}} />}               
         </MobileView>
         <BrowserView className='desktop-view'>
+          {!isSessionActive &&  <SessionEnd /> }
           {currentLevel === -1 && <WelcomeDesk updateLevel={updateLevel} /> }
           {currentLevel === 0 && <IntroAnimation  updateLevel={updateLevel}  /> }        
           {currentLevel === 1 && <Level updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel} handleNextLevel={() => { loadNextLevel()}} /> }
