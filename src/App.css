@@ -1,6 +1,17 @@
+@font-face {
+  font-family: "CustomFont";
+  src: url("https://bonusmaster.re4m.com/css/Webfonts/MerkurSan.eot");
+  src: url("https://bonusmaster.re4m.com/css/Webfonts/MerkurSan.woff") format("woff"),
+  url("https://bonusmaster.re4m.com/css/Webfonts/MerkurSan.otf") format("opentype"),
+  url("https://bonusmaster.re4m.com/css/Webfonts/MerkurSan.svg#filename") format("svg");
+  }
+
 body {
   font-size: 24px;
   background-color: rgb(2, 20, 41);
+  font-family: 'MerkurSan', Arial, sans-serif;
+  font-weight:normal;
+  font-style:normal;
 }
 
 .App {
