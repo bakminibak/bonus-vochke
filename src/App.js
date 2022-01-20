@@ -24,7 +24,7 @@ function App() {
   const [numChestOpened, setNumChestOpened] = useState(0);
   // const [showInfoScr, setShowInfoScr] = useState(false);
   
-  const orentation = isMobile;
+  const orientation = isMobile ? "mobile" : "";
   
     
 
@@ -133,7 +133,7 @@ function App() {
     (currentLevel < 4) ? setCurrentlevel(currentLevel+1) : setCurrentlevel(-1);
   }
   return (
-    <div className="App">
+    <div className={`App ${orientation}`}>
       <header className="App-header">
       </header>
       <main>
