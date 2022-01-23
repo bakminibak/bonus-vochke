@@ -32,7 +32,7 @@ export const SessionEnd = () => {
     });
 
     return (
-        <div class="session-end">
+        <div className="session-end">
             <div className='c-container' ref={animContainer}>                       
             </div>                   
         </div>

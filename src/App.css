@@ -235,6 +235,7 @@ main {
 }
 
 .button_getbonus,
+.button_endgame,
 .button_next {
   position: absolute;
   bottom: 0px;

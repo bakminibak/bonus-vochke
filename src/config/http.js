@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const defaultConfig = {
+  // baseURL: 'http://localhost:1337',
   baseURL: 'https://merkur.re4m.com',
   // baseURL: process.env.API_URL,
   timeout: 5000,
