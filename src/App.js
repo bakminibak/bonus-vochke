@@ -26,6 +26,7 @@ function App() {
   const [currentSession, setCurrentSession] = useState({});
   const [numChestOpened, setNumChestOpened] = useState(0);
   const [isSessionActive, setIsSessionActive] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   // const [showInfoScr, setShowInfoScr] = useState(false);
   
   const orientation = isMobile ? "mobile" : "";
@@ -135,7 +136,7 @@ function App() {
     if (currentSession.finished) {
       if (currentSession.didWin) {
         setTotalPoints(currentSession.gameState.totalPoints);
-        setCurrentlevel(4);
+        setCurrentlevel(-1);
       } else {
         setIsSessionActive(false);
       }
@@ -156,7 +157,14 @@ function App() {
     };
   }, []);
   
+  useEffect(() => {
+    const timer = setTimeout(() => {
+        setIsLoading(false)
+    }, 2000);
+    return () => clearTimeout(timer);
 
+  }, []);
+  
 
   const animatePoints = (_points) => {
     let _toPoints = totalPoints + _points;
@@ -189,6 +197,7 @@ function App() {
       <header className="App-header">
       </header>
       <main>
+        {isLoading && <div className='loaderIcon'><img src='./images/loader.gif' /></div>}
         <MobileView className='mobile-view'>
           {!isSessionActive &&  <SessionEndMobile /> }
           {currentLevel === -2 && <Login updateLevel={updateLevel} login={login()} register={register()} createSession={createSession()} /> }

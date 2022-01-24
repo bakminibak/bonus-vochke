@@ -3,12 +3,16 @@ import Lottie from 'lottie-web';
 import animation1 from '../mobile-animations/level1.json';
 import animation2 from '../mobile-animations/level2.json';
 import animation3 from '../mobile-animations/level3.json';
+import aniamtionBtn from '../animations/zavrsi_igru.json';
+import aniamtionBtnNext from '../animations/sledeci_nivo.json';
 import ChestClass from './kochezi/ChestClass';
 //import { Chest } from './kochezi/Chest';
 
 
 export const LevelMobile = ({currentSession, bonusMasterOpen, bonusMasterTransfer, currentLevel, updatePoints , handleNextLevel, levelPrizes}) => {
     const animationContainer = React.createRef()
+    const endGame_btn = React.createRef();
+    const nextLevel_btn = React.createRef();
     const [isChestOpen, setIsChestOpen] = useState(false);
     const [numOfOpenedChest, setNumberOfOpenedChests] = useState(0);
     const [bonusPoints, setBonusPoints] = useState(0);
@@ -74,6 +78,24 @@ export const LevelMobile = ({currentSession, bonusMasterOpen, bonusMasterTransfe
         }
       }, [openedChests])
 
+      
+      React.useEffect(() => {
+        const bgAnim = Lottie.loadAnimation({
+          container: endGame_btn.current,
+          animationData: aniamtionBtn,
+          loop: true
+        });
+      }, [endGame_btn])
+
+      React.useEffect(() => {
+        const nextBtn = Lottie.loadAnimation({
+          container: nextLevel_btn.current,
+          animationData: aniamtionBtnNext,
+          loop: true
+        });
+      }, [nextLevel_btn])
+
+
       const handleBtnClick = (e) => {
         e.preventDefault();
         nextAudio.play();
@@ -123,8 +145,9 @@ export const LevelMobile = ({currentSession, bonusMasterOpen, bonusMasterTransfe
               <ChestClass key='1dsac' customClass="k3" bonusPoints={levelPrizes} numOpenedChest={numOfOpenedChest}  onClickEl={async () => { chestClicked()}} />  
             </div>
           </div>      
-          {isChestOpen && currentLevel<3  &&  <button className='btn button_next' onClick={handleBtnClick}><img src="./images/btns/sledeci_nivo.png" /> </button>}           
-          {isChestOpen && currentLevel === 3  &&  <button className='btn button_endgame' onClick={handleBtnClick}><img src="./images/btns/endgame.png" /> </button>}           
+          
+          {isChestOpen && currentLevel < 3    &&  <button className='btn button_next' onClick={handleBtnClick} ><div className='next_btn' ref={nextLevel_btn}></div></button>}           
+          {isChestOpen && currentLevel === 3  &&  <button className='btn button_getbonus_container' onClick={handleBtnClick} ref={endGame_btn} ></button>}           
         </div>
     )
 }
