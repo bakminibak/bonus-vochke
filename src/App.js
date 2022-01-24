@@ -1,4 +1,4 @@
-import React,{ useState } from 'react';
+import React,{ useState, useEffect } from 'react';
 import { BrowserView, MobileView, isMobile } from 'react-device-detect';
 import './App.css';
 
@@ -16,6 +16,7 @@ import {SessionEndMobile} from './components/SessionEnd_Mobile';
 
 import { WelcomeDeskMobile } from './components/WelcomeDesk_Mobile';
 import { IntroAnimationMobile } from './components/introMobile/IntroAnimationMobile';
+
 
 
 function App() {
@@ -108,6 +109,20 @@ function App() {
   //   if (isLoaded)
   //     updateTotalPoints();
   // }, [isLoaded])
+
+  useEffect(() => {
+    const levelBgImgs = [
+      'images/nivo1/img_13.png',
+      'images/nivo2/img_21.png',
+      'images/nivo3/img_19.png'
+    ]
+  
+    return () => {
+      //second;
+    };
+  }, []);
+  
+
 
   const animatePoints = (_points) => {
     let _toPoints = totalPoints + _points;

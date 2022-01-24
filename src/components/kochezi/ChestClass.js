@@ -52,7 +52,7 @@ export default class ChestClass extends Component {
   }
   
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.currentActive == this.props.customClass && JSON.stringify(prevProps.bonusPoints) !== JSON.stringify(this.props.bonusPoints)) {
+    if (prevState.currentActive === this.props.customClass && JSON.stringify(prevProps.bonusPoints) !== JSON.stringify(this.props.bonusPoints)) {
       this.points = this.props.bonusPoints[this.props.numOpenedChest];
       this.setState({
         currentActive: ''
