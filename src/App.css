@@ -331,11 +331,12 @@ main {
   display: none;
 }
 .c-container .finalPoints {  
-  font-size: clamp(20px, 4vw, 34px);
+  font-size: clamp(26px, 8vw, 42px);
   color: rgb(0,38,82);
+  font-family: 'MerkurSanBlack', Arial, sans-serif;
   font-weight: bolder;
   position: absolute;
-  top: 24%;
+  top: 22.5%;
   z-index: 300;
   left: 0;
   right: 0;
