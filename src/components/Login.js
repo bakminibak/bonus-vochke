@@ -11,11 +11,10 @@ const startValues = {
 export const Login = ({updateLevel, register, login, createSession}) => {
     const [initialValues, setInitialValues] = useState(startValues);
 
-    const [startBtnVisibility, setStartBtnVisibility] = useState('hide');
-
     const formSubmit = async (values) => {
         let user = null;
         // setLoading(true);
+        console.log("values", values);
         try {
             user = await login({ identifier: values.identifier, game_gift_code: values.gamegiftcode });
         } catch (e) {
@@ -50,7 +49,7 @@ export const Login = ({updateLevel, register, login, createSession}) => {
                 await createSession({
                     game: "bonus-master",
                 });
-                updateLevel(-1);
+                // updateLevel(-1);
                 // console.log("user:", user);
                 // setLoading(false);
             } catch (e) {
@@ -64,7 +63,7 @@ export const Login = ({updateLevel, register, login, createSession}) => {
         const params = new URLSearchParams(search);
         const username = params.get('username');
         const game_gift_code = params.get('game_gift_code');
-        console.log(username, game_gift_code);
+        // console.log(username, game_gift_code);
         if (username && game_gift_code) {
             formSubmit({identifier: username, terms: true, gamegiftcode: game_gift_code});
         }

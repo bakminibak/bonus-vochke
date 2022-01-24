@@ -1,17 +1,34 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 
 import Lottie from 'lottie-web';
 import endAnimationData from '../animations/endScr.json';
 
-export const EndScr = ({totalPoints, handleNextLevel}) => {
+export const EndScr = ({ totalPoints, handleNextLevel, bonusMasterTransfer, currentSession }) => {
     const animContainer = React.createRef();
 
     const audioBtn = new Audio("./sfx/nextLevel/Positive Game Win.mp3");
     const audioWelcome = new Audio("./sfx/welcome/Slot Game Win.mp3")
-    const handleBtnClick = () => {        
+    const handleBtnClick = () => {
         //updateLevel(-1);
         audioBtn.play();
         handleNextLevel();
+    }
+
+    const transferBonus = async (e) => {
+        console.log('transferBonus activated')
+        e.preventDefault();
+        audioBtn.play();
+        try {
+            const sessionData = await bonusMasterTransfer({
+                session: currentSession.id,
+            });
+            console.log("sessionData:", sessionData);
+            // window.location.reload();
+            return sessionData;
+        } catch (e) {
+            console.log(e);
+            // window.location.reload();
+        }
     }
 
     useEffect(() => {
@@ -21,21 +38,21 @@ export const EndScr = ({totalPoints, handleNextLevel}) => {
             animationData: endAnimationData,
             autoplay: true,
             loop: false
-        }); 
-        
+        });
+
         const timer = setTimeout(() => {
             console.log('This will run after 1 second!');
             audioWelcome.play();
-          }, 1000);
-          return () => clearTimeout(timer);
+        }, 1000);
+        return () => clearTimeout(timer);
     });
 
     return (
         <div>
-            <div className='c-container' ref={animContainer}>                 
-                <div className="finalPoints">Osvojili ste {totalPoints}%</div>       
-            </div>        
-            <button className='btn button_check_account' onClick={handleBtnClick}><img src="./images/btns/PREBACI_BONUS.png" />  </button>             
+            <div className='c-container' ref={animContainer}>
+                <div className="finalPoints">Osvojili ste {totalPoints}%</div>
+            </div>
+            <button className='btn button_check_account' onClick={async (e) => { transferBonus(e) }}><img src="./images/btns/PREBACI_BONUS.png" />  </button>
         </div>
     )
 }

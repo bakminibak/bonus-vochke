@@ -7,7 +7,7 @@ import ChestClass from './kochezi/ChestClass';
 //import { Chest } from './kochezi/Chest';
 
 
-export const LevelMobile = ({currentSession, bonusMasterOpen, currentLevel, updatePoints , handleNextLevel, levelPrizes}) => {
+export const LevelMobile = ({currentSession, bonusMasterOpen, bonusMasterTransfer, currentLevel, updatePoints , handleNextLevel, levelPrizes}) => {
     const animationContainer = React.createRef()
     const [isChestOpen, setIsChestOpen] = useState(false);
     const [numOfOpenedChest, setNumberOfOpenedChests] = useState(0);
@@ -92,6 +92,20 @@ export const LevelMobile = ({currentSession, bonusMasterOpen, currentLevel, upda
           setBonusPoints(_points);
           setOpenedChests(openedChests+1);
 
+          return sessionData;
+        } catch (e) {
+          console.log(e);
+        }
+      }
+      const transferBonus = async () => {
+        console.log('transferBonus activated')
+        nextAudio.play();
+        try {
+          const sessionData = await bonusMasterTransfer({
+            session: currentSession.id,
+          });
+          console.log("sessionData:",sessionData);
+          handleNextLevel();
           return sessionData;
         } catch (e) {
           console.log(e);

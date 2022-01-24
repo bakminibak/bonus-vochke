@@ -44,6 +44,7 @@ function App() {
   // Adding login, register and createSession logic based on strapi request.
   const login = () => async (userData) => {
     const http = getAxiosInstance();
+    // console.warn(http.request.data);
     try {
       const { data } = await http.post("/auth/local-simple", userData);
       http.defaults.headers.common["Authorization"] = `bearer ${data.jwt}`;
@@ -69,6 +70,7 @@ function App() {
     try {
       const { data } = await http.post("/game-sessions", requestData);
       setCurrentSession(data);
+      setCurrentlevel(-1);
       return data;
     } catch (e) {
       throw e;
@@ -105,10 +107,42 @@ function App() {
   };
   // End of adding open chest logic.
 
-  // React.useEffect(() => {
-  //   if (isLoaded)
-  //     updateTotalPoints();
-  // }, [isLoaded])
+    // Adding open chest logic based on strapi request.
+    const bonusMasterTransfer = (params) => async (params) => {
+      // console.log(params);
+      setIsLoaded(false);
+      const http = getAxiosInstance();
+      try {
+        const { data } = await http.post(
+          "/merkurbet/bonusMaster/transfer",
+          {},
+          { params }
+        );
+        console.log("bonusMasterTransfer:",data);
+        loadNextLevel();
+        setIsLoaded(true);
+        return data;
+      } catch (e) {
+        setIsLoaded(true);
+        setError(e);
+        loadNextLevel();
+        // throw e;
+      }
+    };
+    // End of adding open chest logic.
+
+  React.useEffect(() => {
+    if (currentSession.finished) {
+      if (currentSession.didWin) {
+        setTotalPoints(currentSession.gameState.totalPoints);
+        setCurrentlevel(4);
+      } else {
+        setIsSessionActive(false);
+      }
+    } else {
+      setIsSessionActive(true);
+    }
+  }, [currentSession, isSessionActive])
 
   useEffect(() => {
     const levelBgImgs = [
@@ -148,7 +182,7 @@ function App() {
   }
   const loadNextLevel = () => {
     setNumChestOpened(0);
-    (currentLevel < 4) ? setCurrentlevel(currentLevel+1) : setCurrentlevel(-1);
+    (currentLevel < 4) ? setCurrentlevel(currentLevel+1) : setCurrentlevel(-2);
   }
   return (
     <div className={`App ${orientation}`}>
@@ -159,23 +193,23 @@ function App() {
           {!isSessionActive &&  <SessionEndMobile /> }
           {currentLevel === -2 && <Login updateLevel={updateLevel} login={login()} register={register()} createSession={createSession()} /> }
           {currentLevel === -1 && <WelcomeDeskMobile updateLevel={updateLevel} /> }
-          {currentLevel === 0 && <IntroAnimationMobile  updateLevel={updateLevel}  /> }        
-          {currentLevel === 1 && <LevelMobile updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel} handleNextLevel={() => { loadNextLevel()}} /> }
-          {currentLevel === 2 && <LevelMobile updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel}  handleNextLevel={() => { loadNextLevel()}}  /> }
-          {currentLevel === 3 && <LevelMobile updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel}  handleNextLevel={() => { loadNextLevel()}}  /> }
+          {currentLevel === 0 && <IntroAnimationMobile  updateLevel={updateLevel}  /> }
+          {currentLevel === 1 && <LevelMobile updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel} currentSession={currentSession} bonusMasterOpen={bonusMasterOpen()} bonusMasterTransfer={bonusMasterTransfer()} handleNextLevel={() => { loadNextLevel()}} /> }
+          {currentLevel === 2 && <LevelMobile updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel} currentSession={currentSession} bonusMasterOpen={bonusMasterOpen()} bonusMasterTransfer={bonusMasterTransfer()} handleNextLevel={() => { loadNextLevel()}}  /> }
+          {currentLevel === 3 && <LevelMobile updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel} currentSession={currentSession} bonusMasterOpen={bonusMasterOpen()} bonusMasterTransfer={bonusMasterTransfer()} handleNextLevel={() => { loadNextLevel()}}  /> }
           {currentLevel > 0 && currentLevel < 4 && <LevelPoints totalPoints={totalPoints} />  }      
-          {currentLevel > 3 && <EndScrMobile totalPoints={totalPoints} handleNextLevel={() => { loadNextLevel()}} />}               
+          {currentLevel > 3 && <EndScrMobile totalPoints={totalPoints} currentSession={currentSession} handleNextLevel={() => { loadNextLevel()}} bonusMasterTransfer={bonusMasterTransfer()} />}               
         </MobileView>
         <BrowserView className='desktop-view'>
           {!isSessionActive &&  <SessionEnd /> }
           {currentLevel === -2 && <Login updateLevel={updateLevel} login={login()} register={register()} createSession={createSession()} /> }
           {currentLevel === -1 && <WelcomeDesk updateLevel={updateLevel} /> }
           {currentLevel === 0 && <IntroAnimation  updateLevel={updateLevel}  /> }        
-          {currentLevel === 1 && <Level updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel} currentSession={currentSession} bonusMasterOpen={bonusMasterOpen()} handleNextLevel={() => { loadNextLevel()}} /> }
-          {currentLevel === 2 && <Level updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel} currentSession={currentSession} bonusMasterOpen={bonusMasterOpen()} handleNextLevel={() => { loadNextLevel()}}  /> }
-          {currentLevel === 3 && <Level updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel} currentSession={currentSession} bonusMasterOpen={bonusMasterOpen()} handleNextLevel={() => { loadNextLevel()}}  /> }
+          {currentLevel === 1 && <Level updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel} currentSession={currentSession} bonusMasterOpen={bonusMasterOpen()} bonusMasterTransfer={bonusMasterTransfer()} handleNextLevel={() => { loadNextLevel()}} /> }
+          {currentLevel === 2 && <Level updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel} currentSession={currentSession} bonusMasterOpen={bonusMasterOpen()} bonusMasterTransfer={bonusMasterTransfer()} handleNextLevel={() => { loadNextLevel()}}  /> }
+          {currentLevel === 3 && <Level updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel} currentSession={currentSession} bonusMasterOpen={bonusMasterOpen()} bonusMasterTransfer={bonusMasterTransfer()} handleNextLevel={() => { loadNextLevel()}}  /> }
           {currentLevel > 0 && currentLevel < 4 && <LevelPoints totalPoints={totalPoints} />  }      
-          {currentLevel > 3 && <EndScr totalPoints={totalPoints} handleNextLevel={() => { loadNextLevel()}} />} 
+          {currentLevel > 3 && <EndScr totalPoints={totalPoints} currentSession={currentSession} handleNextLevel={() => { loadNextLevel()}} bonusMasterTransfer={bonusMasterTransfer()} />} 
         </BrowserView>
       </main>
     </div>
