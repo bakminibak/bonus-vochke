@@ -9,7 +9,7 @@ import ChestClass from './kochezi/ChestClass';
 //import { Chest } from './kochezi/Chest';
 
 
-export const Level = ({currentSession, bonusMasterOpen, bonusMasterTransfer, currentLevel, updatePoints , handleNextLevel, levelPrizes}) => {
+export const Level = ({currentSession, bonusMasterOpen, bonusMasterTransfer, currentLevel, updatePoints , handleNextLevel, levelPrizes, isLoading}) => {
     const animationContainer = React.createRef();
     const endGame_btn = React.createRef();
     const nextLevel_btn = React.createRef();
@@ -95,6 +95,9 @@ export const Level = ({currentSession, bonusMasterOpen, bonusMasterTransfer, cur
         });
       }, [nextLevel_btn])
 
+      React.useEffect(() => {          
+        isLoading(false);
+      });
       
       const handleBtnClick = (e) => {
         e.preventDefault();

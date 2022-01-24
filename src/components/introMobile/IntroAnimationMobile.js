@@ -41,9 +41,10 @@ export const IntroAnimationMobile = ({updateLevel}) => {
      
     return (
         <div>
-            {currentScrState === 1 && <div className='c-container' ref={animContainerScr1} onClick={handleBtnClick}></div> }
+            {currentScrState === 1 && <div className='c-container' ref={animContainerScr1}></div> }
             {currentScrState === 2 && <div className='c-container' ref={animContainerScr2}></div> }
             
+            {currentScrState === 1 && <button className='btn button_start' onClick={handleBtnClick}><img src='../../images/btns/OSVOJI_BONUS.png' /></button> }
             {currentScrState === 2 && <button className='btn button_start' onClick={handleBtnClick}><img src='../../images/btns/IGRAJ.png' /></button> }
             
         </div>

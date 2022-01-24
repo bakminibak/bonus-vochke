@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Lottie from 'lottie-web';
 import animation from '../mobile-animations/welcome.json';
 
-export const WelcomeDeskMobile = ({updateLevel}) => {
+export const WelcomeDeskMobile = ({updateLevel, isLoading}) => {
     const animationContainer = React.createRef();
 
     const [startBtnVisibility, setStartBtnVisibility] = useState('hide');
@@ -14,6 +14,7 @@ export const WelcomeDeskMobile = ({updateLevel}) => {
         const anim = Lottie.loadAnimation({
           container: animationContainer.current,
           animationData: animation,
+          autoplay: true,
           loop: false
         });
         
@@ -30,6 +31,9 @@ export const WelcomeDeskMobile = ({updateLevel}) => {
       }, [])
 
 
+      React.useEffect(() => {          
+        isLoading(false);
+      });
     const startGame = () => {
         console.log("startGame");
         audioBtn.play();

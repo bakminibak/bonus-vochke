@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Lottie from 'lottie-web';
 import animation from '../animations/welcome.json';
 
-export const WelcomeDesk = ({updateLevel,setIsLoading}) => {
+export const WelcomeDesk = ({updateLevel, isLoading}) => {
     const animationContainer = React.createRef();
 
     const [startBtnVisibility, setStartBtnVisibility] = useState('hide');
@@ -14,6 +14,7 @@ export const WelcomeDesk = ({updateLevel,setIsLoading}) => {
         const anim = Lottie.loadAnimation({
           container: animationContainer.current,
           animationData: animation,
+          autoplay: true,
           loop: false
         });
         const timer = setTimeout(() => {
@@ -21,9 +22,16 @@ export const WelcomeDesk = ({updateLevel,setIsLoading}) => {
             setStartBtnVisibility('show');
             audioWelcome.play();
           }, 1000);
-          return () => clearTimeout(timer);
-          setIsLoading(false)
+          
+          return () => {
+              clearTimeout(timer);
+          }
+          
       }, [])
+    
+      React.useEffect(() => {          
+        isLoading(false);
+      });
 
 
     const startGame = () => {

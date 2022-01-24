@@ -388,6 +388,23 @@ main {
   height: 100%;
   max-height: 40px;
 }
+.endScr-msg {
+  font-size: 24px;  
+  font-family: 'MerkurSan', Arial, sans-serif;
+  color: white;
+  
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 20px;
+  z-index: 10000;
+}
+.endScr-msg > div {
+  max-width: 640px;
+  margin: auto;
+  padding: 0 20px;
+  padding-bottom: 0;
+}
 @media only screen and (max-width: 768px){
   .chests-container {
     margin: auto 20px auto 40px;
@@ -395,6 +412,9 @@ main {
   }
   .chest-wrapper {
     margin-bottom: -25px;
+  }
+  .endScr-msg {
+    font-size: 14px;
   }
 }
 
@@ -422,10 +442,4 @@ main {
   z-index: 20000;
   
   background-color: rgba(2, 20, 41, 0.658);
-}
-.endScr-msg {
-  font-size: 24px;  
-  font-family: 'MerkurSanBlack', Arial, sans-serif;
-  font-weight: bolder;
-  color: white;
 }
