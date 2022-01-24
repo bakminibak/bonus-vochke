@@ -52,7 +52,8 @@ export const EndScr = ({ totalPoints, handleNextLevel, bonusMasterTransfer, curr
             <div className='c-container' ref={animContainer}>
                 <div className="finalPoints">{totalPoints}% BONUSA</div>
             </div>
-            <button className='btn button_check_account' onClick={async (e) => { transferBonus(e) }}><img src="./images/btns/PREBACI_BONUS.png" />  </button>
+            {/* <button className='btn button_check_account' onClick={async (e) => { transferBonus(e) }}><img src="./images/btns/PREBACI_BONUS.png" />  </button> */}
+            <div className='endScr-msg'>Vasa igra je zavrsena, mozete iskljuciti prozor u gornjem desnom uglom</div>
         </div>
     )
 }
