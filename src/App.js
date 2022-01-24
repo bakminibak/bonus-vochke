@@ -71,7 +71,7 @@ function App() {
     try {
       const { data } = await http.post("/game-sessions", requestData);
       setCurrentSession(data);
-      setCurrentlevel(-1);
+      setCurrentlevel(4);
       return data;
     } catch (e) {
       throw e;
@@ -147,19 +147,33 @@ function App() {
 
   useEffect(() => {
     const levelBgImgs = [
-      'images/nivo1/img_13.png',
-      'images/nivo2/img_21.png',
-      'images/nivo3/img_19.png'
+      './images/nivo1/img_13.png',
+      './images/nivo2/img_21.png',
+      './images/nivo3/img_19.png'
     ]
-  
+    
+    cacheImages(levelBgImgs);
+    
+    //setIsLoading(false);
     return () => {
       //second;
     };
   }, []);
-  
+  const cacheImages = async (levelBgImgs) => {
+    const promises = await levelBgImgs.map((src) => {
+        return new Promise(function (resolve, reject) {
+          const img= new Image();
+          img.src = src;
+          img.onload = resolve();
+          img.onerror = reject();
+          console.log("img src: ", src);
+        })
+    })
+    await Promise.all(promises);
+  }
   useEffect(() => {
     const timer = setTimeout(() => {
-        setIsLoading(false)
+        //(false)
     }, 2000);
     return () => clearTimeout(timer);
 
