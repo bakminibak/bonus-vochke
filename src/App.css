@@ -161,7 +161,7 @@ main {
   color: #da0303!important;
 }
 .mobile-view .points {
-  font-size: 12px;
+  font-size: 18px;
   line-height: 10px;
   padding-right: 15px;
 }
@@ -211,7 +211,7 @@ main {
   z-index: 0;
 }
 .mobile-view .chest .percent {
-  font-size: 6px;
+  /* font-size: 6px; */
 }
 
 .chest  .false {
