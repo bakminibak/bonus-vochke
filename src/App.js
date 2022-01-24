@@ -145,12 +145,28 @@ function App() {
     }
   }, [currentSession, isSessionActive])
 
+  //Preload animation images
   useEffect(() => {
-    const levelBgImgs = [
-      './images/nivo1/img_13.png',
-      './images/nivo2/img_21.png',
-      './images/nivo3/img_19.png'
-    ]
+    let  levelBgImgs;
+    if (isMobile) {
+      levelBgImgs = [
+        './images/mobile/level1/img_13.png',
+        './images/mobile/level2/img_21.png',
+        './images/mobile/level3/img_19.png',
+        './images/mobile/welcome/img_15.png',
+        './images/mobile/welcome/img_1.png'
+      ]
+
+    } else {
+      levelBgImgs = [
+        './images/nivo1/img_13.png',
+        './images/nivo2/img_21.png',
+        './images/nivo3/img_19.png',
+        './images/welcome_desk/img_15.png',
+        './images/welcome_desk/img_1.png',
+      ]
+
+    }
     
     cacheImages(levelBgImgs);
     
