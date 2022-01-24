@@ -3,12 +3,14 @@ import Lottie from 'lottie-web';
 import animation1 from '../animations/nivo1_bg.json';
 import animation2 from '../animations/nivo2_bg.json';
 import animation3 from '../animations/nivo3_bg.json';
+import aniamtionBtn from '../animations/zavrsi_igru.json';
 import ChestClass from './kochezi/ChestClass';
 //import { Chest } from './kochezi/Chest';
 
 
 export const Level = ({currentSession, bonusMasterOpen, bonusMasterTransfer, currentLevel, updatePoints , handleNextLevel, levelPrizes}) => {
-    const animationContainer = React.createRef()
+    const animationContainer = React.createRef();
+    const endGame_btn = React.createRef();
     const [isChestOpen, setIsChestOpen] = useState(false);
     const [numOfOpenedChest, setNumberOfOpenedChests] = useState(0);
     const [bonusPoints, setBonusPoints] = useState(0);
@@ -74,6 +76,15 @@ export const Level = ({currentSession, bonusMasterOpen, bonusMasterTransfer, cur
         }
       }, [openedChests])
 
+
+      React.useEffect(() => {
+        const bgAnim = Lottie.loadAnimation({
+          container: endGame_btn.current,
+          animationData: aniamtionBtn,
+          loop: true
+        });
+      }, [])
+
       const handleBtnClick = (e) => {
         e.preventDefault();
         nextAudio.play();
@@ -124,7 +135,7 @@ export const Level = ({currentSession, bonusMasterOpen, bonusMasterTransfer, cur
             </div>
           </div>
           {isChestOpen && currentLevel<3  &&  <button className='btn button_next' onClick={handleBtnClick}><img src="./images/btns/sledeci_nivo.png" /> </button>}           
-          {isChestOpen && currentLevel === 3  &&  <button className='btn button_getbonus' onClick={handleBtnClick}><img src="./images/btns/PREBACI_BONUS.png" /> </button>}           
+          {isChestOpen && currentLevel === 3  &&  <button className='btn button_getbonus_container' onClick={handleBtnClick} ref={endGame_btn} ></button>}           
         </div>
     )
 }
