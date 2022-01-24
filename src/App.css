@@ -88,7 +88,7 @@ main {
 }
 .mobile-view .intro-heading {
   width:60%;  
-  top: 11%;
+  top: 12%;
 }
 .intro-heading-totalbonus {
   font-size: clamp(20px, 4vw, 34px);
