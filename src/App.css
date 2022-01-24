@@ -1,11 +1,18 @@
 @font-face {
-  font-family: "MerkurSan";
+  font-family: "MerkurSanRegular";
   src: url("../public/css/Webfonts/EOT/MerkurSans-Regular.eot");
   src: url("../public/css/Webfonts/WOFF/MerkurSans-Condensed.woff") format("woff"),
   url("../public/css/Webfonts/WOFF2/MerkurSans-Condensed.woff2") format("woff2"),
   url("../public/css/Webfonts/OTF/MerkurSans-Condensed.otf") format("opentype");
   }
-
+  
+@font-face {
+  font-family: "MerkurSanBlack";
+  src: url("../public/css/Webfonts/EOT/MerkurSans-Black.eot");
+  src: url("../public/css/Webfonts/WOFF/MerkurSans-Black.woff") format("woff"),
+  url("../public/css/Webfonts/WOFF2/MerkurSans-Black.woff2") format("woff2"),
+  url("../public/css/Webfonts/OTF/MerkurSans-CondensedBlack.otf") format("opentype");
+  }
 body {
   font-size: 24px;
   background-color: rgb(2, 20, 41);
@@ -130,16 +137,20 @@ main {
 }
 .chest-wrapper .points {
   /* background-color: greenyellow; */
+  
+  font-family: 'MerkurSanBlack', Arial, sans-serif;
+  font-weight: bold;
   position: absolute;
   color: #007900;
   font-size: min(max(16px, 4vw), 32px);
+  
+
   /* transform: translateY(-430px); */
   opacity: 0;
   display: block;
   transition:  bottom 0.5s ease 0.5s, opacity 0.5s ease-out 0.5s;
   z-index: 100;
   padding-right: 27px;
-  font-weight: bolder;
   text-align: center;
   left: 0;
   right: 0px;
@@ -161,6 +172,9 @@ main {
 .small-text {
   font-size: 14px;
   font-weight: 500;
+  
+  font-family: 'MerkurSan', Arial, sans-serif;
+  font-weight:normal;
 }
 .chest-wrapper .points.show { 
   /* transform:  translateY(-290px); */
