@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Lottie from 'lottie-web';
 import animation from '../animations/welcome.json';
 
-export const WelcomeDesk = ({updateLevel}) => {
+export const WelcomeDesk = ({updateLevel,setIsLoading}) => {
     const animationContainer = React.createRef();
 
     const [startBtnVisibility, setStartBtnVisibility] = useState('hide');
@@ -22,7 +22,7 @@ export const WelcomeDesk = ({updateLevel}) => {
             audioWelcome.play();
           }, 1000);
           return () => clearTimeout(timer);
-
+          setIsLoading(false)
       }, [])
 
 

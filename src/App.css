@@ -423,3 +423,9 @@ main {
   
   background-color: rgba(2, 20, 41, 0.658);
 }
+.endScr-msg {
+  font-size: 24px;  
+  font-family: 'MerkurSanBlack', Arial, sans-serif;
+  font-weight: bolder;
+  color: white;
+}

@@ -170,11 +170,12 @@ function App() {
         })
     })
     await Promise.all(promises);
+    setIsLoading(false);
   }
   useEffect(() => {
     const timer = setTimeout(() => {
-        //(false)
-    }, 2000);
+        //setIsLoading(false);
+    }, 1000);
     return () => clearTimeout(timer);
 
   }, []);
@@ -226,7 +227,7 @@ function App() {
         <BrowserView className='desktop-view'>
           {!isSessionActive &&  <SessionEnd /> }
           {currentLevel === -2 && <Login updateLevel={updateLevel} login={login()} register={register()} createSession={createSession()} /> }
-          {currentLevel === -1 && <WelcomeDesk updateLevel={updateLevel} /> }
+          {currentLevel === -1 && <WelcomeDesk isLoading={setIsLoading()} updateLevel={updateLevel} /> }
           {currentLevel === 0 && <IntroAnimation  updateLevel={updateLevel}  /> }        
           {currentLevel === 1 && <Level updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel} currentSession={currentSession} bonusMasterOpen={bonusMasterOpen()} bonusMasterTransfer={bonusMasterTransfer()} handleNextLevel={() => { loadNextLevel()}} /> }
           {currentLevel === 2 && <Level updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel} currentSession={currentSession} bonusMasterOpen={bonusMasterOpen()} bonusMasterTransfer={bonusMasterTransfer()} handleNextLevel={() => { loadNextLevel()}}  /> }
