@@ -20,7 +20,6 @@ export const Level = ({currentSession, bonusMasterOpen, bonusMasterTransfer, cur
     let  currentAnimation=null;
 
     //const updateLevelBG = () => {   
-      console.log('updateLevelBG', currentLevel); 
       let audioUrl = './sfx/level_1/Fishing_Boat_at_Sea_128.mp3';
 
       switch(currentLevel) {
@@ -80,12 +79,12 @@ export const Level = ({currentSession, bonusMasterOpen, bonusMasterTransfer, cur
 
 
       React.useEffect(() => {
-        const bgAnim = Lottie.loadAnimation({
+        const endGameAnimbtn = Lottie.loadAnimation({
           container: endGame_btn.current,
           animationData: aniamtionBtn,
           loop: true
         });
-      }, [endGame_btn])
+      }, [isChestOpen])
 
       React.useEffect(() => {
         const nextBtn = Lottie.loadAnimation({
@@ -93,7 +92,7 @@ export const Level = ({currentSession, bonusMasterOpen, bonusMasterTransfer, cur
           animationData: aniamtionBtnNext,
           loop: true
         });
-      }, [nextLevel_btn])
+      }, [isChestOpen])
 
       React.useEffect(() => {          
         isLoading(false);
@@ -113,7 +112,7 @@ export const Level = ({currentSession, bonusMasterOpen, bonusMasterTransfer, cur
           const _points = (typeof(sessionData) == 'object') ? Number(sessionData.gameState.points) : 0;
           console.log("sessionData:",sessionData);
           // updatePoints(_points, _totalPoints);
-          console.log("updatedPoints:",_points);
+          console.log("updatedPoints:" ,_points);
           setBonusPoints(_points);
           setOpenedChests(openedChests+1);
 
