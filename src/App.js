@@ -92,7 +92,6 @@ function App() {
         {},
         { params }
       );
-      console.log("bonusMasterOpen:",data);
       updateTotalPoints(data.gameState.points, data.gameState.totalPoints);
       for (let i=0; i < 3; i++) {
         _levelPrizes.push([data.gameState.points, data.gameState.points, data.gameState.points]);
@@ -115,12 +114,11 @@ function App() {
       const http = getAxiosInstance();
       try {
         
-        console.log("bonusMasterTransfer:",currentSession.id);
-        
         const { data } = await http.post(
           "/merkurbet/bonusMaster/transfer",
-          {},
-          { session: currentSession.id }
+          {
+            params: {session: currentSession.id}
+          }
         );
         //loadNextLevel();
         setIsLoaded(true);
