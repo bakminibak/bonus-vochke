@@ -109,24 +109,26 @@ function App() {
   // End of adding open chest logic.
 
     // Adding open chest logic based on strapi request.
-    const bonusMasterTransfer = (params) => async (params) => {
+    const bonusMasterTransfer = () => async () => {
       // console.log(params);
       setIsLoaded(false);
       const http = getAxiosInstance();
       try {
+        
+        console.log("bonusMasterTransfer:",currentSession.id);
+        
         const { data } = await http.post(
           "/merkurbet/bonusMaster/transfer",
           {},
-          { params }
+          { session: currentSession.id }
         );
-        console.log("bonusMasterTransfer:",data);
-        loadNextLevel();
+        //loadNextLevel();
         setIsLoaded(true);
         return data;
       } catch (e) {
         setIsLoaded(true);
         setError(e);
-        loadNextLevel();
+        //loadNextLevel();
         // throw e;
       }
     };

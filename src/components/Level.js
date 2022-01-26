@@ -101,7 +101,12 @@ export const Level = ({currentSession, bonusMasterOpen, bonusMasterTransfer, cur
       const handleBtnClick = (e) => {
         e.preventDefault();
         nextAudio.play();
+        if (currentLevel === 3) {
+          bonusMasterTransfer();
+        }
         handleNextLevel();
+        
+        
       }
       const chestClicked = async () => {
         try {
@@ -115,7 +120,6 @@ export const Level = ({currentSession, bonusMasterOpen, bonusMasterTransfer, cur
           console.log("updatedPoints:" ,_points);
           setBonusPoints(_points);
           setOpenedChests(openedChests+1);
-
           return sessionData;
         } catch (e) {
           console.log(e);
@@ -142,9 +146,9 @@ export const Level = ({currentSession, bonusMasterOpen, bonusMasterTransfer, cur
         <div className="level-animation-container" ref={animationContainer}>
           <div className='chests'>            
             <div className='chests-container'>
-              <ChestClass key='1dsa' customClass="k1" bonusPoints={levelPrizes} numOpenedChest={numOfOpenedChest} onClickEl={async () => { chestClicked()}} />
-              <ChestClass key='1dsad' customClass="k2" bonusPoints={levelPrizes} numOpenedChest={numOfOpenedChest}  onClickEl={async () => { chestClicked()}} />
-              <ChestClass key='1dsac' customClass="k3" bonusPoints={levelPrizes} numOpenedChest={numOfOpenedChest}  onClickEl={async () => { chestClicked()}} />  
+              <ChestClass key='1dsa' customClass="k1" bonusPoints={levelPrizes} numOpenedChest={numOfOpenedChest} onClickEl={ () => { chestClicked()}} />
+              <ChestClass key='1dsad' customClass="k2" bonusPoints={levelPrizes} numOpenedChest={numOfOpenedChest}  onClickEl={ () => { chestClicked()}} />
+              <ChestClass key='1dsac' customClass="k3" bonusPoints={levelPrizes} numOpenedChest={numOfOpenedChest}  onClickEl={ () => { chestClicked()}} />  
             </div>
           </div>
           {isChestOpen && currentLevel < 3  &&  <button className='btn button_next' onClick={handleBtnClick} ><div className='next_btn' ref={nextLevel_btn}></div></button>}           
