@@ -85,7 +85,7 @@ export const LevelMobile = ({currentSession, bonusMasterOpen, bonusMasterTransfe
           animationData: aniamtionBtn,
           loop: true
         });
-      }, [endGame_btn])
+      }, [isChestOpen])
 
       React.useEffect(() => {
         const nextBtn = Lottie.loadAnimation({
@@ -93,7 +93,7 @@ export const LevelMobile = ({currentSession, bonusMasterOpen, bonusMasterTransfe
           animationData: aniamtionBtnNext,
           loop: true
         });
-      }, [nextLevel_btn])
+      }, [isChestOpen])
 
       React.useEffect(() => {          
         isLoading(false);

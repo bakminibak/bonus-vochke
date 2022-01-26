@@ -20,24 +20,24 @@ export const Level = ({currentSession, bonusMasterOpen, bonusMasterTransfer, cur
     let  currentAnimation=null;
 
     //const updateLevelBG = () => {   
-      let audioUrl = './sfx/level_1/Fishing_Boat_at_Sea_128.mp3';
+      let audioUrl = './sfx/level_1/Fishing_Boat_at_Sea_v4.mp3';
 
       switch(currentLevel) {
         case 1:
           currentAnimation = animation1;
-          audioUrl = "./sfx/level_1/Fishing_Boat_at_Sea_128.mp3"
+          audioUrl = "./sfx/level_1/Fishing_Boat_at_Sea_v4.mp3"
           break;
         case 2:
           currentAnimation = animation2;
-          audioUrl = "./sfx/level_2/sea-waves_128.mp3"
+          audioUrl = "./sfx/level_2/sea-waves v4.mp3"
           break;
         case 3:
           currentAnimation = animation3;
-          audioUrl = "./sfx/level_3/Jungle_Sounds_128.mp3"
+          audioUrl = "./sfx/level_3/Jungle Sounds v4.mp3"
           break;       
         default:     
           currentAnimation = animation1;
-          audioUrl = "./sfx/level_1/Fishing_Boat_at_Sea_128.mp3"
+          audioUrl = "./sfx/level_1/Fishing_Boat_at_Sea_v4.mp3"
       }
       
     //levelAudio.current = new Audio(audioUrl);
