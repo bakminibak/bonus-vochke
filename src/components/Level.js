@@ -15,9 +15,11 @@ export const Level = ({currentSession, bonusMasterOpen, bonusMasterTransfer, cur
     const nextLevel_btn = React.createRef();
     const [isChestOpen, setIsChestOpen] = useState(false);
     const [numOfOpenedChest, setNumberOfOpenedChests] = useState(0);
-    const [bonusPoints, setBonusPoints] = useState(0);
+    const [bonusPoints1, setBonusPoints1] = useState(null);
+    const [bonusPoints2, setBonusPoints2] = useState(null);
+    const [bonusPoints3, setBonusPoints3] = useState(null);
     const [openedChests, setOpenedChests] = useState(0);
-    let playChestAnimation = false;
+    const [playChestAnimation, setPlayChestAnimation] = useState(false);
     let  currentAnimation=null;
 
     //const updateLevelBG = () => {   
@@ -109,17 +111,32 @@ export const Level = ({currentSession, bonusMasterOpen, bonusMasterTransfer, cur
         
         
       }
-      const chestClicked = async () => {
+      const chestClicked = async (chestID) => {
         try {
           const sessionData = await bonusMasterOpen({
             session: currentSession.id,
             level: currentLevel,
           });
           const _points = (typeof(sessionData) == 'object') ? Number(sessionData.gameState.points) : 0;
-          console.log("sessionData:",sessionData);
+          //console.log("sessionData:",sessionData);
           // updatePoints(_points, _totalPoints);
-          console.log("updatedPoints:" ,_points);
-          setBonusPoints(_points);
+          //console.log("updatedPoints:" ,_points);
+          //setPlayChestAnimation(true);
+          let _numOfOpenedChest = numOfOpenedChest;
+          switch (chestID) {
+            case "k1":
+              setBonusPoints1(_points);
+              break;
+            case "k2":
+              setBonusPoints2(_points);
+              break;
+            case "k3":
+              setBonusPoints3(_points);
+              break;
+            default:
+          }
+
+          
           setOpenedChests(openedChests+1);
           
           return sessionData;
@@ -134,9 +151,9 @@ export const Level = ({currentSession, bonusMasterOpen, bonusMasterTransfer, cur
         <div className="level-animation-container" ref={animationContainer}>
           <div className='chests'>            
             <div className='chests-container'>
-              <ChestClass key='1dsa'  playChest={playChestAnimation} customClass="k1" bonusPoints={bonusPoints} numOpenedChest={numOfOpenedChest} onClickEl={ () => { chestClicked()}} />
-              <ChestClass key='1dsad' playChest={playChestAnimation} customClass="k2" bonusPoints={bonusPoints} numOpenedChest={numOfOpenedChest}  onClickEl={ () => { chestClicked()}} />
-              <ChestClass key='1dsac' playChest={playChestAnimation} customClass="k3" bonusPoints={bonusPoints} numOpenedChest={numOfOpenedChest}  onClickEl={ () => { chestClicked()}} />  
+              <ChestClass key='1dsa'  playChest={playChestAnimation} customClass="k1" bonusPoints={bonusPoints1} onClickEl={ (e) => { chestClicked(e)}} />
+              <ChestClass key='1dsad' playChest={playChestAnimation} customClass="k2" bonusPoints={bonusPoints2}  onClickEl={ (e) => { chestClicked(e)}} />
+              <ChestClass key='1dsac' playChest={playChestAnimation} customClass="k3" bonusPoints={bonusPoints3}  onClickEl={ (e) => { chestClicked(e)}} />  
             </div>
           </div>
           {isChestOpen && currentLevel < 3  &&  <button className='btn button_next' onClick={handleBtnClick} ><div className='next_btn' ref={nextLevel_btn}></div></button>}           
