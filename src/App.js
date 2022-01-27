@@ -37,10 +37,7 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
 
-  const [levelPrizes, setLevelPrizes] = useState([
-                                                  [500, -200, -50],
-                                                  [100, 100, -500],
-                                                  [-100, 2500, 500]]);
+  const [levelPrizes, setLevelPrizes] = useState([]);
 
   // Adding login, register and createSession logic based on strapi request.
   const login = () => async (userData) => {

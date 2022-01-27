@@ -24,7 +24,7 @@ export default class ChestClass extends Component {
       isChestClicked: false,
       isChestFull: false
     }  
-    this.points = this.props.bonusPoints[this.props.numOpenedChest];
+    //this.points = this.props.bonusPoints[this.props.numOpenedChest];
     this.chestAnimation = fullChestAnim;
   }
 
@@ -52,9 +52,12 @@ export default class ChestClass extends Component {
   }
   
   componentDidUpdate(prevProps, prevState) {
+    console.log("componentDidUpdate", JSON.stringify(this.props.bonusPoints));
     if (prevState.currentActive === this.props.customClass && JSON.stringify(prevProps.bonusPoints) !== JSON.stringify(this.props.bonusPoints)) {
       console.log("comp update ", JSON.stringify(this.props.bonusPoints));
-      this.points = this.props.bonusPoints[this.props.numOpenedChest];
+      //console.log("comp update ", this.props.bonusPoints[this.props.numOpenedChest]);
+      //this.points = this.props.bonusPoints[this.props.numOpenedChest];
+      this.updateAndPlayChest();
       this.setState({
         currentActive: ''
       });
@@ -78,30 +81,32 @@ export default class ChestClass extends Component {
       showFullChest: true
     });
   }
+
+  updateAndPlayChest() {
+    console.log("updateAndPlayChest", this.points);
+    if (this.points>0){
+      this.chestAnim.play();
+      this.setState({showFullChest: true});
+      this.audioBtn.play();
+      // this.state.myclassname = 'points show ';
+      this.setState({myclassname: 'points show'});
+    } else {
+      this.setState({showFullChest: false});
+      this.chestAnimEmpty.play();
+      this.audioChestEmpty.play();
+      this.setState({myclassname: 'points show negative'});
+    }
+  }
   handleClick(e) {
     e.preventDefault();
     console.log('handleClick', this.state.isChestOpen);
     if (!this.state.isChestOpen) {
         this.props.onClickEl();
-        this.points = this.props.bonusPoints[this.props.numOpenedChest];
         console.log("playAnim Chest", this.points);     
         //this.setState({displayFinger: "hide"});
-        this.openChest();
+        //this.openChest();
         //hideFinger("hide");
         //this.chestAnim.play();
-        
-        if (this.points>0){
-          this.chestAnim.play();
-          this.setState({showFullChest: true});
-          this.audioBtn.play();
-          // this.state.myclassname = 'points show ';
-          this.setState({myclassname: 'points show'});
-        } else {
-          this.setState({showFullChest: false});
-          this.chestAnimEmpty.play();
-          this.audioChestEmpty.play();
-          this.setState({myclassname: 'points show negative'});
-        }
         //mainAnim.play();
         
     } else  {
