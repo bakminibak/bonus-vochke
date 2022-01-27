@@ -110,21 +110,22 @@ function App() {
     // Adding open chest logic based on strapi request.
     const bonusMasterTransfer = () => async () => {
       // console.log(params);
-      setIsLoaded(false);
+      // setIsLoaded(false);
       const http = getAxiosInstance();
       try {
         
         const { data } = await http.post(
           "/merkurbet/bonusMaster/transfer",
+          {},
           {
             params: {session: currentSession.id}
           }
         );
         //loadNextLevel();
-        setIsLoaded(true);
-        return data;
+        // setIsLoaded(true);
+        // return data;
       } catch (e) {
-        setIsLoaded(true);
+        // setIsLoaded(true);
         setError(e);
         //loadNextLevel();
         // throw e;
@@ -150,18 +151,18 @@ function App() {
     let  levelBgImgs;
     if (isMobile) {
       levelBgImgs = [
-        './images/mobile/level1/img_9.png',
-        './images/mobile/level2/img_21.png',
-        './images/mobile/level3/img_21.png',
+        './images/mobile/level1/img_13.jpg',
+        './images/mobile/level2/img_21.jpg',
+        './images/mobile/level3/img_19.jpg',
         './images/mobile/welcome/img_15.png',
         './images/mobile/welcome/img_1.png'
       ]
 
     } else {
       levelBgImgs = [
-        './images/nivo1/img_9.png',
-        './images/nivo2/img_21.png',
-        './images/nivo3/img_19.png',
+        './images/nivo1/img_13.jpg',
+        './images/nivo2/img_21.jpg',
+        './images/nivo3/img_19.jpg',
         './images/welcome_desk/img_15.png',
         './images/welcome_desk/img_1.png',
       ]
@@ -222,7 +223,7 @@ function App() {
   const loadNextLevel = () => {
     setIsLoading(true);
     setNumChestOpened(0);
-    (currentLevel < 4) ? setCurrentlevel(currentLevel+1) : setCurrentlevel(-2);
+    (currentLevel < 3) ? setCurrentlevel(currentLevel+1) : setCurrentlevel(4);
   }
   return (
     <div className={`App ${orientation}`}>

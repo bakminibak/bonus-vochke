@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import Lottie from 'lottie-web';
 import endAnimationData from '../animations/endScr.json';
 
-export const EndScr = ({ totalPoints, handleNextLevel, bonusMasterTransfer, currentSession }) => {
+export const EndScr = ({ totalPoints, handleNextLevel }) => {
     const animContainer = React.createRef();
 
     const audioBtn = new Audio("./sfx/nextLevel/Positive Game Win.mp3");
@@ -12,23 +12,6 @@ export const EndScr = ({ totalPoints, handleNextLevel, bonusMasterTransfer, curr
         //updateLevel(-1);
         audioBtn.play();
         handleNextLevel();
-    }
-
-    const transferBonus = async (e) => {
-        console.log('transferBonus activated')
-        e.preventDefault();
-        audioBtn.play();
-        try {
-            const sessionData = await bonusMasterTransfer({
-                session: currentSession.id,
-            });
-            console.log("sessionData:", sessionData);
-            // window.location.reload();
-            return sessionData;
-        } catch (e) {
-            console.log(e);
-            // window.location.reload();
-        }
     }
 
     useEffect(() => {

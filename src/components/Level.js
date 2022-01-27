@@ -125,20 +125,6 @@ export const Level = ({currentSession, bonusMasterOpen, bonusMasterTransfer, cur
           console.log(e);
         }
       }
-      // const transferBonus = async () => {
-      //   console.log('transferBonus activated')
-      //   nextAudio.play();
-      //   try {
-      //     const sessionData = await bonusMasterTransfer({
-      //       session: currentSession.id,
-      //     });
-      //     console.log("sessionData:",sessionData);
-      //     handleNextLevel();
-      //     return sessionData;
-      //   } catch (e) {
-      //     console.log(e);
-      //   }
-      // }
       const getNumberOfOpenedChest = () => {
         return 
       }
