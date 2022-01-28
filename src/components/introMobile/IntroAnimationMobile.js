@@ -12,6 +12,9 @@ export const IntroAnimationMobile = ({updateLevel, isLoading, currentSession, cu
     const [currentScrState, setCurrentScr] = useState(1);
 
     const handleBtnClick = () => {
+        if (currentSession.gameState !== null) {
+            updateLevel(currentSession.gameState.level);
+        }
         if (currentScrState === 2)  updateLevel(1);
         setCurrentScr(currentScrState + 1);        
         audioBtn.play();
