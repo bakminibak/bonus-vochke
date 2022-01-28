@@ -213,6 +213,7 @@ main {
   /* bottom: -90px; */
   margin-bottom: 37px;
   position: relative;
+  cursor: pointer;
 }
 .mobile-view .chest {
   transform: scale(1.6);
@@ -394,6 +395,7 @@ main {
   background-color: transparent;
   border: none;
   bottom: 25px;
+  cursor: pointer;
 }
 .btn img {
   width: auto;

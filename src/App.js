@@ -156,7 +156,7 @@ function App() {
       levelBgImgs = [
         './images/mobile/level1/img_13.jpg',
         './images/mobile/level2/img_21.jpg',
-        './images/mobile/level3/img_19.jpg',
+        './images/mobile/level3/img_21.jpg',
         './images/mobile/welcome/img_15.png',
         './images/mobile/welcome/img_1.png'
       ]
