@@ -158,7 +158,15 @@ function App() {
         './images/mobile/level2/img_21.jpg',
         './images/mobile/level3/img_21.jpg',
         './images/mobile/welcome/img_15.png',
-        './images/mobile/welcome/img_1.png'
+        './images/mobile/welcome/img_1.png',
+        './images/kovcheg_prazen/img_5.png',
+        './images/kovcheg_prazen/img_1.png',
+        './images/kovcheg_prazen/img_6.png',
+        './images/kovcheg_zlato/img_6.png',
+        './images/kovcheg_zlato/img_7.png',
+        './images/kovcheg_zlato/img_9.png',
+        './images/kovcheg_zlato/img_2.png',
+        './images/kovcheg_zlato/img_1.png'
       ]
 
     } else {
@@ -168,6 +176,14 @@ function App() {
         './images/nivo3/img_19.jpg',
         './images/welcome_desk/img_15.png',
         './images/welcome_desk/img_1.png',
+        './images/kovcheg_prazen/img_5.png',
+        './images/kovcheg_prazen/img_1.png',
+        './images/kovcheg_prazen/img_6.png',
+        './images/kovcheg_zlato/img_6.png',
+        './images/kovcheg_zlato/img_7.png',
+        './images/kovcheg_zlato/img_9.png',
+        './images/kovcheg_zlato/img_2.png',
+        './images/kovcheg_zlato/img_1.png'
       ]
 
     }
