@@ -132,14 +132,15 @@ export default class ChestClass extends Component {
   render() {
     return (
       <div className='chest-wrapper'>
-        <div className={"chest "+this.props.customClass} onClick={this.handleClick.bind(this)}>
-            <div  id={this.props.customClass} className={'kovcheg-anim_full '+!!this.state.showFullChest} ref={this.animationContainer}></div>
-            <div  id={'e-'+this.props.customClass} className={'kovcheg-anim_full '+!this.state.showFullChest} ref={this.animationContainerEmpty}></div>
-            <div className={this.state.myclassname}>{this.points}<span className='percent'>%</span> <br/><span className="small-text"> BONUS</span></div>   
-            <div className={this.state.displayFinger}>
-              <Finger />
-            </div>
-        </div>
+          <div className={"chest "+this.props.customClass}>
+              <div className='hitTarget'  onClick={this.handleClick.bind(this)}></div>
+              <div  id={this.props.customClass} className={'kovcheg-anim_full '+!!this.state.showFullChest} ref={this.animationContainer}></div>
+              <div  id={'e-'+this.props.customClass} className={'kovcheg-anim_full '+!this.state.showFullChest} ref={this.animationContainerEmpty}></div>
+              <div className={this.state.myclassname}>{this.points}<span className='percent'>%</span> <br/><span className="small-text"> BONUS</span></div>   
+              <div className={this.state.displayFinger}>
+                <Finger />
+              </div>
+          </div>
       </div>
     );
   }

@@ -27,8 +27,30 @@ body {
   font-family: 'MerkurSansRegular', Arial, sans-serif;
   font-weight:normal;
   font-style:normal;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+   -khtml-user-select: none; /* Konqueror HTML */
+     -moz-user-select: none; /* Old versions of Firefox */
+      -ms-user-select: none; /* Internet Explorer/Edge */
+          user-select: none; /* Non-prefixed version, currently
+                                supported by Chrome, Edge, Opera and Firefox */
 }
 
+button,
+textarea,
+input,
+select,
+.btn,
+.chest,
+a{
+ -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+ -webkit-tap-highlight-color: transparent;
+ -webkit-user-select: none;
+ -khtml-user-select: none;
+ -moz-user-select: none;
+ -ms-user-select: none;
+  user-select: none;
+}
 .App {
   text-align: center;
   position: relative;
@@ -72,6 +94,7 @@ main {
 .App-link {
   color: #61dafb;
 }
+
 
 .animation-container {
   background-color: red;
@@ -213,7 +236,20 @@ main {
   /* bottom: -90px; */
   margin-bottom: 37px;
   position: relative;
+}
+.chest .hitTarget {
+  z-index: 1000;
   cursor: pointer;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 150px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgba(128, 255, 0, 0);
+  
 }
 .mobile-view .chest {
   transform: scale(1.6);
