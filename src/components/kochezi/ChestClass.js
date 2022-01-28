@@ -11,8 +11,8 @@ export default class ChestClass extends Component {
   constructor(props) {
     super(props);
     this.points = 0;
-    this.audioBtn = new Audio("./sfx/chest_full/Game Win 2.mp3")
-    this.audioChestEmpty = new Audio("./sfx/chest_empty/Game Win.mp3")
+    this.audioBtn = new Audio("./sfx/chest_full/Game Win 2 v2.mp3")
+    this.audioChestEmpty = new Audio("./sfx/chest_empty/Game Win v2.mp3")
     this.animationContainer = React.createRef();
     this.animationContainerEmpty = React.createRef();
     this.chestAnim = null;

@@ -2,16 +2,21 @@ import React, { useEffect } from 'react';
 import Lottie from 'lottie-web';
 import infoAnimationData from '../../animations/infoScr.json';
 
-export const IntroAnimation = ({updateLevel}) => {
+export const IntroAnimation = ({updateLevel, isLoading, currentSession, currentLevel}) => {
     
 
-    const audioBtn = new Audio("./sfx/nextLevel/Positive Game Win.mp3");
+    const audioBtn = new Audio("./sfx/nextLevel/Positive Game Win v2.mp3");
     const animContainer = React.createRef();
 
 
     const handleBtnClick = () => {
         audioBtn.play();
-        updateLevel(1);
+        if (currentSession.gameState !== null) {
+            // updateChests(currentSession.gameState.opened.length);
+            updateLevel(currentSession.gameState.level);
+        } else {
+            updateLevel(1);
+        }
     }
 
     useEffect(() => {
@@ -21,8 +26,9 @@ export const IntroAnimation = ({updateLevel}) => {
             autoplay: true,
             loop: true
           }); 
+        isLoading(false);
     }, []);
-     
+
     return (
         <div>
             <div className='c-container' ref={animContainer}>            

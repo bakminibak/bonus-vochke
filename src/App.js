@@ -68,7 +68,13 @@ function App() {
     try {
       const { data } = await http.post("/game-sessions", requestData);
       setCurrentSession(data);
-      setCurrentlevel(-1);
+      console.log("currentDATA", data)
+      if (!data.didWin && data.gameState !== null && data.gameState.opened.length > 0) {
+        setTotalPoints(data.gameState.totalPoints);
+        setCurrentlevel(0);
+      } else {
+        setCurrentlevel(-1);
+      }
       return data;
     } catch (e) {
       throw e;
@@ -232,7 +238,7 @@ function App() {
           {!isSessionActive &&  <SessionEndMobile /> }
           {currentLevel === -2 && <Login updateLevel={updateLevel} login={login()} register={register()} createSession={createSession()} /> }
           {currentLevel === -1 && <WelcomeDeskMobile isLoading={() => {setIsLoading()}}  updateLevel={updateLevel} /> }
-          {currentLevel === 0 && <IntroAnimationMobile  updateLevel={updateLevel}  /> }
+          {currentLevel === 0 && <IntroAnimationMobile  isLoading={() => {setIsLoading()}} updateLevel={updateLevel} currentLevel={currentLevel} currentSession={currentSession} /> }
           {currentLevel === 1 && <LevelMobile  isLoading={() => {setIsLoading()}} updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel} currentSession={currentSession} bonusMasterOpen={bonusMasterOpen()} bonusMasterTransfer={bonusMasterTransfer()} handleNextLevel={() => { loadNextLevel()}} /> }
           {currentLevel === 2 && <LevelMobile  isLoading={() => {setIsLoading()}} updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel} currentSession={currentSession} bonusMasterOpen={bonusMasterOpen()} bonusMasterTransfer={bonusMasterTransfer()} handleNextLevel={() => { loadNextLevel()}}  /> }
           {currentLevel === 3 && <LevelMobile  isLoading={() => {setIsLoading()}} updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel} currentSession={currentSession} bonusMasterOpen={bonusMasterOpen()} bonusMasterTransfer={bonusMasterTransfer()} handleNextLevel={() => { loadNextLevel()}}  /> }
@@ -243,7 +249,7 @@ function App() {
           {!isSessionActive &&  <SessionEnd /> }
           {currentLevel === -2 && <Login updateLevel={updateLevel} login={login()} register={register()} createSession={createSession()} /> }
           {currentLevel === -1 && <WelcomeDesk isLoading={() => {setIsLoading()}} updateLevel={updateLevel} /> }
-          {currentLevel === 0 && <IntroAnimation  updateLevel={updateLevel}  /> }        
+          {currentLevel === 0 && <IntroAnimation isLoading={() => {setIsLoading()}} updateLevel={updateLevel} currentLevel={currentLevel} currentSession={currentSession} /> }        
           {currentLevel === 1 && <Level  isLoading={() => {setIsLoading()}} updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel} currentSession={currentSession} bonusMasterOpen={bonusMasterOpen()} bonusMasterTransfer={bonusMasterTransfer()} handleNextLevel={() => { loadNextLevel()}} /> }
           {currentLevel === 2 && <Level  isLoading={() => {setIsLoading()}} updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel} currentSession={currentSession} bonusMasterOpen={bonusMasterOpen()} bonusMasterTransfer={bonusMasterTransfer()} handleNextLevel={() => { loadNextLevel()}}  /> }
           {currentLevel === 3 && <Level  isLoading={() => {setIsLoading()}} updatePoints={() => {updateTotalPoints()}} levelPrizes={levelPrizes[currentLevel-1]} currentLevel={currentLevel} currentSession={currentSession} bonusMasterOpen={bonusMasterOpen()} bonusMasterTransfer={bonusMasterTransfer()} handleNextLevel={() => { loadNextLevel()}}  /> }

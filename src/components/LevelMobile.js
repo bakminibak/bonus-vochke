@@ -44,7 +44,7 @@ export const LevelMobile = ({currentSession, bonusMasterOpen, bonusMasterTransfe
     //levelAudio.current = new Audio(audioUrl);
     
     const [levelAudio, setLevelAudio] = useState(new Audio(audioUrl));
-    const [nextAudio, setNextAudio] = useState(new Audio("./sfx/nextLevel/Positive Game Win.mp3"));
+    const [nextAudio, setNextAudio] = useState(new Audio("./sfx/nextLevel/Positive Game Win v2.mp3"));
     const [ myAnimationData, setMyAnimationData ]= useState(currentAnimation);
 
     // console.log('levelPrizes:', levelPrizes );
@@ -61,6 +61,7 @@ export const LevelMobile = ({currentSession, bonusMasterOpen, bonusMasterTransfe
         // console.log(bgAnim);
         levelAudio.loop = true;
         levelAudio.play();
+        
 
         return () => { // --> componentWillUnmount
           levelAudio.pause();

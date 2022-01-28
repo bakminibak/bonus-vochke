@@ -1,22 +1,30 @@
 @font-face {
-  font-family: "MerkurSanRegular";
-  src: url("../public/css/Webfonts/EOT/MerkurSans-Regular.eot");
-  src: url("../public/css/Webfonts/WOFF/MerkurSans-Condensed.woff") format("woff"),
-  url("../public/css/Webfonts/WOFF2/MerkurSans-Condensed.woff2") format("woff2"),
-  url("../public/css/Webfonts/OTF/MerkurSans-Condensed.otf") format("opentype");
+  font-family: "MerkurSansRegular";
+  src: url("../public/css/Webfonts/EOT/MerkurSans-Regular-web.eot");
+  src: url("../public/css/Webfonts/WOFF/MerkurSans-Regular-web.woff") format("woff"),
+  url("../public/css/Webfonts/WOFF2/MerkurSans-Regular-web.woff2") format("woff2"),
+  url("../public/css/Webfonts/OTF/MerkurSans-Regular-web.otf") format("opentype");
   }
   
 @font-face {
-  font-family: "MerkurSanBlack";
-  src: url("../public/css/Webfonts/EOT/MerkurSans-Black.eot");
-  src: url("../public/css/Webfonts/WOFF/MerkurSans-Black.woff") format("woff"),
-  url("../public/css/Webfonts/WOFF2/MerkurSans-Black.woff2") format("woff2"),
-  url("../public/css/Webfonts/OTF/MerkurSans-CondensedBlack.otf") format("opentype");
+  font-family: "MerkurSansBlack";
+  src: url("../public/css/Webfonts/EOT/MerkurSans-Black-web.eot");
+  src: url("../public/css/Webfonts/WOFF/MerkurSans-Black-web.woff") format("woff"),
+  url("../public/css/Webfonts/WOFF2/MerkurSans-Black-web.woff2") format("woff2"),
+  url("../public/css/Webfonts/OTF/MerkurSans-Black-web.otf") format("opentype");
+  }
+
+@font-face {
+  font-family: "MerkurSansCondensedBlack";
+  src: url("../public/css/Webfonts/EOT/MerkurSans-CondensedBlack-web.eot");
+  src: url("../public/css/Webfonts/WOFF/MerkurSans-CondensedBlack-web.woff") format("woff"),
+  url("../public/css/Webfonts/WOFF2/MerkurSans-CondensedBlack-web.woff2") format("woff2"),
+  url("../public/css/Webfonts/OTF/MerkurSans-CondensedBlack-web.otf") format("opentype");
   }
 body {
   font-size: 24px;
   background-color: rgb(2, 20, 41);
-  font-family: 'MerkurSan', Arial, sans-serif;
+  font-family: 'MerkurSansRegular', Arial, sans-serif;
   font-weight:normal;
   font-style:normal;
 }
@@ -142,7 +150,7 @@ main {
 .chest-wrapper .points {
   /* background-color: greenyellow; */
   
-  font-family: 'MerkurSanBlack', Arial, sans-serif;
+  font-family: 'MerkurSansBlack', Arial, sans-serif;
   font-weight: bold;
   position: absolute;
   color: #007900;
@@ -177,7 +185,7 @@ main {
   font-size: 14px;
   font-weight: 500;
   
-  font-family: 'MerkurSan', Arial, sans-serif;
+  font-family: 'MerkurSansRegular', Arial, sans-serif;
   font-weight:normal;
 }
 .chest-wrapper .points.show { 
@@ -341,12 +349,12 @@ main {
   display: none;
 }
 .c-container .finalPoints {  
-  font-size: clamp(26px, 8vw, 42px);
+  font-size: clamp(30px, 10vw, 55px);
   color: rgb(0,38,82);
-  font-family: 'MerkurSanBlack', Arial, sans-serif;
+  font-family: 'MerkurSansCondensedBlack', Arial, sans-serif;
   font-weight: bolder;
   position: absolute;
-  top: 23%;
+  top: 26%;
   z-index: 300;
   left: 0;
   right: 0;
@@ -394,7 +402,7 @@ main {
 }
 .endScr-msg {
   font-size: 24px;  
-  font-family: 'MerkurSan', Arial, sans-serif;
+  font-family: 'MerkurSansRegular', Arial, sans-serif;
   color: white;
   
   position: absolute;

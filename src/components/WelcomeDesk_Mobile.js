@@ -7,8 +7,8 @@ export const WelcomeDeskMobile = ({updateLevel, isLoading}) => {
 
     const [startBtnVisibility, setStartBtnVisibility] = useState('hide');
 
-    const audioWelcome = new Audio("./sfx/welcome/24248607_slot-game-win_by_gamechestaudio_preview.mp3")
-    const audioBtn = new Audio("./sfx/nextLevel/Positive Game Win.mp3");
+    const audioWelcome = new Audio("./sfx/welcome/Slot Game Win v2.mp3")
+    const audioBtn = new Audio("./sfx/nextLevel/Positive Game Win v2.mp3");
 
     React.useEffect(() => {
         const anim = Lottie.loadAnimation({

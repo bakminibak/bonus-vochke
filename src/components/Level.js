@@ -46,7 +46,7 @@ export const Level = ({currentSession, bonusMasterOpen, bonusMasterTransfer, cur
     //levelAudio.current = new Audio(audioUrl);
     
     const [levelAudio, setLevelAudio] = useState(new Audio(audioUrl));
-    const [nextAudio, setNextAudio] = useState(new Audio("./sfx/nextLevel/Positive Game Win.mp3"));
+    const [nextAudio, setNextAudio] = useState(new Audio("./sfx/nextLevel/Positive Game Win v2.mp3"));
     const [ myAnimationData, setMyAnimationData ]= useState(currentAnimation);
 
     // console.log('levelPrizes:', levelPrizes );
@@ -63,6 +63,29 @@ export const Level = ({currentSession, bonusMasterOpen, bonusMasterTransfer, cur
         // console.log(bgAnim);
         levelAudio.loop = true;
         levelAudio.play();
+
+        if (currentSession.gameState !== null && currentSession.gameState.opened.length > 0) {
+          // const chestsOpenedPerLevel = 3 - currentSession.gameState.opened.length / currentLevel;
+          const chestsOpenedPerLevel = 3 - ((currentLevel * 3) - currentSession.gameState.opened.length);
+          if (chestsOpenedPerLevel > 0) {
+            for (let i=1; i < chestsOpenedPerLevel+1; i++) {
+              console.log("openedChests", (currentLevel-1) * 3 + i - 1);
+              switch (i) {
+                case 1:
+                  setBonusPoints1(currentSession.gameState.opened[(currentLevel-1) * 3 + i - 1]);
+                  break;
+                case 2:
+                  setBonusPoints2(currentSession.gameState.opened[(currentLevel-1) * 3 + i - 1]);
+                  break;
+                case 3:
+                  setBonusPoints3(currentSession.gameState.opened[(currentLevel-1) * 3 + i - 1]);
+                  break;
+                default:
+              }
+              setOpenedChests(chestsOpenedPerLevel);
+            }
+          }
+        }
 
         return () => { // --> componentWillUnmount
           levelAudio.pause();

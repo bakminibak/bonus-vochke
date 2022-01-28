@@ -3,10 +3,10 @@ import Lottie from 'lottie-web';
 import infoAnimationData1 from '../../mobile-animations/info_scr1.json';
 import infoAnimationData2 from '../../mobile-animations/info_scr2.json';
 
-export const IntroAnimationMobile = ({updateLevel}) => {
+export const IntroAnimationMobile = ({updateLevel, isLoading, currentSession, currentLevel}) => {
     
 
-    const audioBtn = new Audio("./sfx/nextLevel/Positive Game Win.mp3");
+    const audioBtn = new Audio("./sfx/nextLevel/Positive Game Win v2.mp3");
     const animContainerScr1 = React.createRef();
     const animContainerScr2 = React.createRef();
     const [currentScrState, setCurrentScr] = useState(1);
@@ -39,6 +39,10 @@ export const IntroAnimationMobile = ({updateLevel}) => {
             } 
     }, [currentScrState]);
      
+    useEffect(() => {
+        isLoading(false);
+    }, []);
+
     return (
         <div>
             {currentScrState === 1 && <div className='c-container' ref={animContainerScr1}></div> }
