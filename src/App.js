@@ -143,21 +143,18 @@ function App() {
 
   React.useEffect(() => {
     console.log("currentSession: ", currentSession);
+    if (currentSession.length > 0) setGameRestarted(false);
+
     if (currentSession.finished) {
       if (currentSession.didWin) {
         setTotalPoints(currentSession.gameState.totalPoints);
-        setCurrentlevel(4);
+        setGameRestarted(true);
+        // setCurrentlevel(4); //goto CountinueGame
       } else {
         setIsSessionActive(false);
-        console.log("gameRestarted: ", gameRestarted);
       }
     } else {
-      if (currentSession.gameState) {
-        setGameRestarted(false);
-      }
-      else  {
-        setGameRestarted(false);
-      }
+      setGameRestarted(true);
       setIsSessionActive(true);
     }
   }, [currentSession, isSessionActive])
@@ -250,6 +247,7 @@ function App() {
     setTotalPoints(Number(totalPoints));
   }
   const updateLevel = (level) => {
+    setGameRestarted(false);
     setCurrentlevel(level);
   }
   const loadNextLevel = () => {
@@ -265,7 +263,7 @@ function App() {
         
         {isLoading && currentLevel < 4 && <div className='loaderIcon'><img src='./images/loader.gif' /></div>}
         <MobileView className='mobile-view'>
-          {gameRestarted && <ContinueGameMobile className='restartScr' sessionState={currentSession} />}
+          {gameRestarted && <ContinueGameMobile className='restartScr' updateLevel={updateLevel} sessionState={currentSession} />}
           {!gameRestarted && !isSessionActive &&  <SessionEndMobile /> }
           {!gameRestarted && isSessionActive && currentLevel === -2 && <Login updateLevel={updateLevel} login={login()} register={register()} createSession={createSession()} /> }
           {!gameRestarted && isSessionActive && currentLevel === -1 && <WelcomeDeskMobile isLoading={() => {setIsLoading()}}  updateLevel={updateLevel} /> }
@@ -277,7 +275,7 @@ function App() {
           {!gameRestarted && isSessionActive && currentLevel > 3 && <EndScrMobile totalPoints={totalPoints} currentSession={currentSession} handleNextLevel={() => { loadNextLevel()}} bonusMasterTransfer={bonusMasterTransfer()} />}               
         </MobileView>
         <BrowserView className='desktop-view'>
-          {gameRestarted && 0 != 0 && <ContinueGame className='restartScr' sessionState={currentSession} isLoading={() => {setIsLoading()}}  />}
+          {gameRestarted && <ContinueGame className='restartScr' updateLevel={updateLevel}  sessionState={currentSession} isLoading={() => {setIsLoading()}}  />}
           {!gameRestarted && !isSessionActive &&  <SessionEnd /> }
           {!gameRestarted && isSessionActive && currentLevel === -2 && <Login updateLevel={updateLevel} login={login()} register={register()} createSession={createSession()} /> }
           {!gameRestarted && isSessionActive && currentLevel === -1 && <WelcomeDesk isLoading={() => {setIsLoading()}} updateLevel={updateLevel} /> }

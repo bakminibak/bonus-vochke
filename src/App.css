@@ -140,7 +140,8 @@ main {
   left: 0;
   right: 0;
   width: 60%;
-  top: 25%;
+  min-width: 320px;
+  top: 35%;
   margin: auto;  
   color: #fff;
   font-size: 34px;
@@ -515,7 +516,7 @@ main {
 }
 .continue-game {
   position: relative;
-  background-color: rebeccapurple;
+  /* background-color: rebeccapurple; */
 }
 .mobile-view .continue-game .continueSession-msg {
   font-size: 20px;
@@ -526,4 +527,11 @@ main {
 }
 .show-msg {
   opacity: 1;
+}
+.btn-hide {
+  display: none;
+}
+.show {
+  opacity: 1;
+  display: block;
 }
