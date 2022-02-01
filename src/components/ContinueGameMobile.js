@@ -2,7 +2,7 @@ import React, {useRef, useState}  from 'react';
 import Lottie from 'lottie-web';
 import animationData from '../mobile-animations/continue_game.json';
 
-export const ContinueGameMobile   = ({sessionState, isLoading}) => {
+export const ContinueGameMobile   = ({sessionState, isLoading, updateLevel}) => {
     
 
     
@@ -27,20 +27,18 @@ export const ContinueGameMobile   = ({sessionState, isLoading}) => {
 
     const [showMessage, setShowMessage] = useState('hide-msg');
     const [currentMsg, setCurrentMsg] = useState(msg_EndSession);
+    const [showBtn, setShowBtn] = useState('btn-hide');
 
     const restartGame = () => {
-      console.log('restartGame');
+      console.log('restartGame', sessionState.gameState.level);
       
+      updateLevel(sessionState.gameState.level+1);
       audioBtn.play();
     }
 
     const separateNewMessage = (msg) => {
-      let itemId=1;
-      let newMsg = msg_EndSession.split('\n').map(i => {
-        itemId++;
-        return <p key={itemId}>{i}</p>
-      });
-      return newMsg
+      let newMsg = msg.split ('\n').map ((item, i) => <p key={i}>{item}</p>);
+      return newMsg;
     }
 
 
@@ -52,19 +50,21 @@ export const ContinueGameMobile   = ({sessionState, isLoading}) => {
         console.log("ContinueGame finished: ", sessionState.finished);
         if (sessionState.finished === false) {
           console.log("sessionState.gameState: ", sessionState.gameState);
-          if (sessionState.gameState !== null && sessionState.gameState.totalPoints) {              
-              console.log("msg_ContinuePlay: ",sessionState.gameState.totalPoints);
-              let newMsgPoints = msg_ContinuePlay.replace("{000%}", sessionState.gameState.totalPoints +"%");
-
-              setCurrentMsg(separateNewMessage(newMsgPoints));
-              console.log("points msg: ", newMsgPoints);
+          if (sessionState.gameState !== null && sessionState.gameState.level < 3 && sessionState.gameState.totalPoints) {              
+              let newMsgPoints = String(msg_ContinuePlay.replace("{000%}", sessionState.gameState.totalPoints +"%"));
+              newMsgPoints = separateNewMessage(newMsgPoints);
+              setCurrentMsg(newMsgPoints);
+          }
+          else {
+            console.log("msg_RepeatLanding: ", msg_RepeatLanding);
+            let _msg = separateNewMessage(msg_RepeatLanding);
+            
+            console.log("msg_RepeatLanding: ", _msg);
+            setCurrentMsg(msg_RepeatLanding);
 
           }
-
         } 
         else  { //msg_RepeatLanding
-          console.log("msg_RepeatLanding");
-          setCurrentMsg(separateNewMessage(msg_RepeatLanding));
         }
 
         setShowMessage('show-msg');
@@ -88,7 +88,7 @@ export const ContinueGameMobile   = ({sessionState, isLoading}) => {
         <div className="continue-game" ref={animationContainer}>
           <div className={'continueSession-msg ' + showMessage}>  {currentMsg} </div>            
           
-          <div className='btn continue_btn'> <img src='./images/btns/NASTAVI.png'  onClick={restartGame} /></div>
+          <div className={'btn continue_btn ' + showBtn}> <img src='./images/btns/NASTAVI.png'  onClick={restartGame} /></div>
         </div>
     )
 }

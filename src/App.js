@@ -263,7 +263,7 @@ function App() {
         
         {isLoading && currentLevel < 4 && <div className='loaderIcon'><img src='./images/loader.gif' /></div>}
         <MobileView className='mobile-view'>
-          {gameRestarted && <ContinueGameMobile className='restartScr' updateLevel={updateLevel} sessionState={currentSession} />}
+          {gameRestarted && <ContinueGameMobile className='restartScr' updateLevel={updateLevel} sessionState={currentSession} isLoading={() => {setIsLoading()}}  />}
           {!gameRestarted && !isSessionActive &&  <SessionEndMobile /> }
           {!gameRestarted && isSessionActive && currentLevel === -2 && <Login updateLevel={updateLevel} login={login()} register={register()} createSession={createSession()} /> }
           {!gameRestarted && isSessionActive && currentLevel === -1 && <WelcomeDeskMobile isLoading={() => {setIsLoading()}}  updateLevel={updateLevel} /> }
