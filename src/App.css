@@ -131,6 +131,22 @@ main {
   color: #FFCB05;
   font-weight: lighter;
 }
+.continueSession-msg {
+  
+  opacity: 0;
+  transition: opacity 2.5s ease-in-out;
+  position: absolute;
+  z-index: 150;
+  left: 0;
+  right: 0;
+  width: 60%;
+  top: 25%;
+  margin: auto;  
+  color: #fff;
+  font-size: 34px;
+  font-weight: bolder;
+  opacity: 0;
+}
 .intro-heading-title {
   color: #fff;
   font-size: 34px;
@@ -359,12 +375,14 @@ main {
 .button_check_account img {
   max-width: 340px;
 }
+.continue_btn,
 .welcome-scr-animation-container .btn {
   position: absolute;
   text-align: center;
   bottom: 20px;
   left: 0;
   right: 0;
+  z-index: 2000;
 }
 .start_btn {
   opacity: 0;
@@ -494,4 +512,18 @@ main {
   z-index: 20000;
   
   background-color: rgba(2, 20, 41, 0.658);
+}
+.continue-game {
+  position: relative;
+  background-color: rebeccapurple;
+}
+.mobile-view .continue-game .continueSession-msg {
+  font-size: 20px;
+}
+
+.hide-msg {
+  opacity: 0;
+}
+.show-msg {
+  opacity: 1;
 }
