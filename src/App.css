@@ -411,7 +411,7 @@ main {
   font-family: 'MerkurSansCondensedBlack', Arial, sans-serif;
   font-weight: bolder;
   position: absolute;
-  top: 26%;
+  top: 24%;
   z-index: 300;
   left: 0;
   right: 0;
@@ -470,10 +470,9 @@ main {
   z-index: 10000;
 }
 .endScr-msg > div {
-  max-width: 640px;
+  max-width: 780px;
   margin: auto;
-  padding: 0 20px;
-  padding-bottom: 0;
+  padding: 10px;
 }
 
 @media only screen and (max-width: 768px){
@@ -522,16 +521,16 @@ main {
   font-size: 20px;
 }
 
-.hide-msg {
+ .hide-msg {
   opacity: 0;
 }
 .show-msg {
   opacity: 1;
 }
-.btn-hide {
+/*.btn-hide {
   display: none;
 }
 .show {
   opacity: 1;
   display: block;
-}
+} */

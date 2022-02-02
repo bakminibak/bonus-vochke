@@ -16,18 +16,8 @@ export const ContinueGameMobile   = ({sessionState, isLoading, updateLevel}) => 
     const msg_ContinuePlay = 'Dobro je da si se vratio, skriveno blago te i dalje čeka! \n Do sada si osvojio {000%} bonusa. Nastavi tamo gde si stao.'
     
 
-
-    
-    // let newText = msg_EndSession.split('\n').map(i => {
-    //     itemId++;
-    //     return <p key={itemId}>{i}</p>
-    // });
-
-    
-
     const [showMessage, setShowMessage] = useState('hide-msg');
-    const [currentMsg, setCurrentMsg] = useState(msg_EndSession);
-    const [showBtn, setShowBtn] = useState('btn-hide');
+    const [currentMsg, setCurrentMsg] = useState(msg_ContinuePlay);
 
     const restartGame = () => {
       console.log('restartGame', sessionState.gameState.level);
@@ -40,38 +30,6 @@ export const ContinueGameMobile   = ({sessionState, isLoading, updateLevel}) => 
       let newMsg = msg.split ('\n').map ((item, i) => <p key={i}>{item}</p>);
       return newMsg;
     }
-
-
-    React.useEffect(() => {
-      console.log("ContinueGame sessionState: ", sessionState);
-      
-      if (Object.keys(sessionState).length > 0 ) {
-        isLoading(false);
-        console.log("ContinueGame finished: ", sessionState.finished);
-        if (sessionState.finished === false) {
-          console.log("sessionState.gameState: ", sessionState.gameState);
-          if (sessionState.gameState !== null && sessionState.gameState.level < 3 && sessionState.gameState.totalPoints) {              
-              let newMsgPoints = String(msg_ContinuePlay.replace("{000%}", sessionState.gameState.totalPoints +"%"));
-              newMsgPoints = separateNewMessage(newMsgPoints);
-              setCurrentMsg(newMsgPoints);
-          }
-          else {
-            console.log("msg_RepeatLanding: ", msg_RepeatLanding);
-            let _msg = separateNewMessage(msg_RepeatLanding);
-            
-            console.log("msg_RepeatLanding: ", _msg);
-            setCurrentMsg(msg_RepeatLanding);
-
-          }
-        } 
-        else  { //msg_RepeatLanding
-        }
-
-        setShowMessage('show-msg');
-      }      
-
-    }, [sessionState]);
-
     React.useEffect(() => {
         
         console.log("CONTINUE");
@@ -82,13 +40,20 @@ export const ContinueGameMobile   = ({sessionState, isLoading, updateLevel}) => 
           autoplay: true,
           loop: true
         });
+
+        isLoading(false);  
+        let newMsgPoints = String(msg_ContinuePlay.replace("{000%}", sessionState.gameState.totalPoints +"%"));
+        newMsgPoints = separateNewMessage(newMsgPoints);
+        setCurrentMsg(newMsgPoints);
+
+        setShowMessage('show-msg');
       }, []);
 
     return (
         <div className="continue-game" ref={animationContainer}>
           <div className={'continueSession-msg ' + showMessage}>  {currentMsg} </div>            
           
-          <div className={'btn continue_btn ' + showBtn}> <img src='./images/btns/NASTAVI.png'  onClick={restartGame} /></div>
+          <div className='btn continue_btn'> <img src='./images/btns/NASTAVI.png'  onClick={restartGame} /></div>
         </div>
     )
 }

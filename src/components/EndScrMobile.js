@@ -54,7 +54,7 @@ export const EndScrMobile = ({ totalPoints, handleNextLevel, bonusMasterTransfer
             <div className='c-container' ref={animContainer}>
                 <div className="finalPoints">{totalPoints}% BONUSA</div>
             </div>
-            <div className='btn endScr-msg'><div>Vasa igra je zavrsena, mozete iskljuciti prozor u gornjem desnom uglom</div></div>
+            <div className='btn endScr-msg'><div>Vaša igra je završena, možete isključiti prozor u gornjem desnom uglu.</div></div>
         </div>
     )
 }
