@@ -69,7 +69,7 @@ export const Level = ({currentSession, bonusMasterOpen, bonusMasterTransfer, cur
           const chestsOpenedPerLevel = 3 - ((currentLevel * 3) - currentSession.gameState.opened.length);
           if (chestsOpenedPerLevel > 0) {
             for (let i=1; i < chestsOpenedPerLevel+1; i++) {
-              console.log("openedChests", (currentLevel-1) * 3 + i - 1);
+              // console.log("openedChests", (currentLevel-1) * 3 + i - 1);
               switch (i) {
                 case 1:
                   setBonusPoints1(currentSession.gameState.opened[(currentLevel-1) * 3 + i - 1]);
@@ -131,8 +131,6 @@ export const Level = ({currentSession, bonusMasterOpen, bonusMasterTransfer, cur
           bonusMasterTransfer();
         }
         handleNextLevel();
-        
-        
       }
       const chestClicked = async (chestID) => {
         try {

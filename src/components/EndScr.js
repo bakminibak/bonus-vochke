@@ -24,7 +24,7 @@ export const EndScr = ({ totalPoints, handleNextLevel }) => {
         });
 
         const timer = setTimeout(() => {
-            console.log('This will run after 1 second!');
+            // console.log('This will run after 1 second!');
             audioWelcome.play();
         }, 1000);
         return () => clearTimeout(timer);

@@ -23,7 +23,7 @@ export const Chest = ({customClass, bonusPoints, playAnimation, onClickEl}) => {
     
     const changeChstClicked = () => {
       setIsChestClicked(true);
-      console.log("changeChstClicked: ", isChestClicked);
+      // console.log("changeChstClicked: ", isChestClicked);
     }
     
     const mainAnim = Lottie;
@@ -39,29 +39,25 @@ export const Chest = ({customClass, bonusPoints, playAnimation, onClickEl}) => {
         }); 
         //chestAnim = mainAnim;   
         if (isChestClicked) {
-          console.log("XXX",isChestClicked);
+          // console.log("XXX",isChestClicked);
           mainAnim.play();
         }
-        else {console.log("YY",isChestClicked)}
         //mainAnim = anim;
       }
       , [])
       
     const handleClick = () => {
-      console.log('handleClick',  isChestOpen);
+      // console.log('handleClick',  isChestOpen);
       changeChstClicked();
 
       if (!isChestOpen) {
-          console.log("playAnim Chest");       
+          // console.log("playAnim Chest");       
           openChest();
           hideFinger("hide");
           //chestAnim.play();
           mainAnim.play();
           //onClickEl();
           
-      } else  {
-
-        console.log("SKIP playAnim Chest");
       }
     }
 

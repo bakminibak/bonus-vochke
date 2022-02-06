@@ -23,7 +23,7 @@
   }
 body {
   font-size: 24px;
-  background-color: rgb(2, 20, 41);
+  background-color: rgb(1, 26, 63);
   font-family: 'MerkurSansRegular', Arial, sans-serif;
   font-weight:normal;
   font-style:normal;
@@ -123,7 +123,7 @@ main {
   position: relative;
 }
 .mobile-view .intro-heading {
-  width:60%;  
+  width:80%;  
   top: 12%;
 }
 .intro-heading-totalbonus {
@@ -195,15 +195,13 @@ main {
   font-weight: bold;
   position: absolute;
   color: #007900;
-  font-size: min(max(16px, 4vw), 32px);
-  
-
+  font-size: min(max(18px,6vw), 25px);
   /* transform: translateY(-430px); */
   opacity: 0;
   display: block;
-  transition:  bottom 0.5s ease 0.5s, opacity 0.5s ease-out 0.5s;
+  transition: bottom 0.5s ease 0.5s, opacity 0.5s ease-out 0.5s;
   z-index: 100;
-  padding-right: 27px;
+  padding-right: 22px;
   text-align: center;
   left: 0;
   right: 0px;
@@ -214,16 +212,16 @@ main {
   color: #da0303!important;
 }
 .mobile-view .points {
-  font-size: 18px;
+  font-size: 14px;
   line-height: 10px;
-  padding-right: 15px;
+  padding-right: 13px;
 }
 .mobile-view .points .small-text {
-  font-size: 8px;
+  font-size: 10px;
 }
 
 .small-text {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   
   font-family: 'MerkurSansRegular', Arial, sans-serif;
@@ -231,7 +229,7 @@ main {
 }
 .chest-wrapper .points.show { 
   /* transform:  translateY(-290px); */
-  bottom: 75%;
+  bottom: 72%;
   
   display: block;
   /* margin-top: 200px; */
@@ -269,6 +267,22 @@ main {
   background-color: rgba(128, 255, 0, 0);
   
 }
+
+.mobile-view .chest .hitTarget {
+  z-index: 1000;
+  cursor: pointer;
+  position: absolute;
+  left: 18px;
+  right: 28px;
+  bottom: 19px;
+  height: 50px;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgba(128, 255, 0, 0);
+}
+
+
 .mobile-view .chest {
   transform: scale(1.6);
 }
@@ -411,7 +425,7 @@ main {
   font-family: 'MerkurSansCondensedBlack', Arial, sans-serif;
   font-weight: bolder;
   position: absolute;
-  top: 24%;
+  top: 25%;
   z-index: 300;
   left: 0;
   right: 0;

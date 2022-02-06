@@ -30,7 +30,7 @@ export default class ChestClass extends Component {
   }
 
   componentDidMount() {
-    console.log("MOUNT", this.state.isChestClicked);
+    // console.log("MOUNT", this.state.isChestClicked);
     
     const mainAnimEmpty = Lottie.loadAnimation({
       container: this.animationContainerEmpty.current,
@@ -93,7 +93,7 @@ export default class ChestClass extends Component {
 
   updateAndPlayChest() {
     this.openChest();
-    console.log("updateAndPlayChest", this.points);
+    // console.log("updateAndPlayChest", this.points);
     if (this.points>0){
       this.chestAnim.play();
       this.setState({showFullChest: true});
@@ -108,14 +108,14 @@ export default class ChestClass extends Component {
     }
   }
   async getSessionchestPoints() {
-    console.log("getSessionchestPoints");
+    // console.log("getSessionchestPoints");
     const getSessin = await this.props.onClickEl();
-    console.log("getSessin Chest", getSessin, this.points); 
+    // console.log("getSessin Chest", getSessin, this.points); 
     return getSessin
   }
   handleClick(e) {
     e.preventDefault();
-    console.log('handleClick', this.state.isChestOpen);
+    // console.log('handleClick', this.state.isChestOpen);
     if (!this.state.isChestOpen) {
         // this.getSessionchestPoints().then(console.log("TESTING")) 
         this.props.onClickEl(this.props.customClass);
@@ -125,8 +125,6 @@ export default class ChestClass extends Component {
         //this.chestAnim.play();
         //mainAnim.play();
         
-    } else  {
-      console.log("SKIP playAnim Chest");
     }
   }
   render() {

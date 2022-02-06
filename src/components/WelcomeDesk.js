@@ -18,7 +18,7 @@ export const WelcomeDesk = ({updateLevel, isLoading}) => {
           loop: false
         });
         const timer = setTimeout(() => {
-            console.log('This will run after 1 second!');
+            // console.log('This will run after 1 second!');
             setStartBtnVisibility('show');
             audioWelcome.play();
           }, 1000);
@@ -35,7 +35,7 @@ export const WelcomeDesk = ({updateLevel, isLoading}) => {
 
 
     const startGame = () => {
-        console.log("startGame");
+        // console.log("startGame");
         audioBtn.play();
         updateLevel(0);
     }

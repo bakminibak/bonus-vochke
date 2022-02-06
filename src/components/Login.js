@@ -14,7 +14,7 @@ export const Login = ({updateLevel, register, login, createSession}) => {
     const formSubmit = async (values) => {
         let user = null;
         // setLoading(true);
-        console.log("values", values);
+        // console.log("values", values);
         try {
             user = await login({ identifier: values.identifier, game_gift_code: values.gamegiftcode });
         } catch (e) {
@@ -22,7 +22,7 @@ export const Login = ({updateLevel, register, login, createSession}) => {
             await register({ email: values.identifier, game_gift_code: values.gamegiftcode });
             try {
                 user = await login({ identifier: values.identifier, game_gift_code: values.gamegiftcode });
-                console.log("user:", user);
+                // console.log("user:", user);
             } catch (e) {
                 // console.log(e.response.data.statusCode);
                 if (e.length > 0 && e.response.data.statusCode === 403) {

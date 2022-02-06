@@ -11,14 +11,14 @@ export const ContinueGame  = ({sessionState, isLoading, bonusMasterTransfer, upd
   const audioWelcome = new Audio("./sfx/welcome/Slot Game Win v2.mp3");
 
   const animationContainer = React.createRef();
-  const msg_ContinuePlay = 'Dobro je da si se vratio, skriveno blago te i dalje čeka! \n Do sada si osvojio {000%} bonusa. Nastavi tamo gde si stao.'
+  const msg_ContinuePlay = 'Dobro je da si se vratio, skriveno blago te i dalje čeka! \n Do sada si osvojio {000%} bonusa.'
   
 
   const [showMessage, setShowMessage] = useState('hide-msg');
   const [currentMsg, setCurrentMsg] = useState(msg_ContinuePlay);
 
   const restartGame = () => {
-    console.log('restartGame', sessionState.gameState.level);
+    // console.log('restartGame', sessionState.gameState.level);
     updateLevel(sessionState.gameState.level+1);
     audioBtn.play();
   }
@@ -29,7 +29,7 @@ export const ContinueGame  = ({sessionState, isLoading, bonusMasterTransfer, upd
   }
   React.useEffect(() => {
       
-      console.log("CONTINUE");
+      // console.log("CONTINUE");
       audioWelcome.play();
       const anim = Lottie.loadAnimation({
         container: animationContainer.current,

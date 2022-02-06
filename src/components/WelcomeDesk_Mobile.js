@@ -20,9 +20,9 @@ export const WelcomeDeskMobile = ({updateLevel, isLoading}) => {
         
         
         //anim.setSpeed(1);
-        console.log(anim);
+        // console.log(anim);
         const timer = setTimeout(() => {
-            console.log('This will run after 1 second!');
+            // console.log('This will run after 1 second!');
             setStartBtnVisibility('show');
             audioWelcome.play();
           }, 1000);
@@ -35,7 +35,7 @@ export const WelcomeDeskMobile = ({updateLevel, isLoading}) => {
         isLoading(false);
       });
     const startGame = () => {
-        console.log("startGame");
+        // console.log("startGame");
         audioBtn.play();
         updateLevel(0);
     }

@@ -14,7 +14,7 @@ export const Finger = () => {
           autoplay: true,
           loop: true
         });
-        console.log(anim);
+        // console.log(anim);
       }, [])
     return (
         <div className="finger-container" ref={animationContainer}>

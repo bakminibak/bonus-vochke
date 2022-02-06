@@ -21,11 +21,11 @@ export const Kovcheg_pun = ({customClass, bonusPoints}) => {
           loop: false
         });
         mainAnim = anim;
-        console.log(anim);
+        // console.log(anim);
       }, [])
       
     const handleClick = () => {
-      console.log('openChest', mainAnim);
+      // console.log('openChest', mainAnim);
       mainAnim.play();
       openChest();
     }
