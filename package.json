@@ -1,4 +1,5 @@
 {
+  "homepage": "https://bakminibak.github.io/bonus-vochke/",
   "name": "bv-app",
   "version": "0.1.0",
   "private": true,
@@ -15,8 +16,8 @@
     "web-vitals": "^2.1.2"
   },
   "scripts": {
-    "start": "react-scripts --max_old_space_size=8192 start",
-    "build": "react-scripts --max_old_space_size=8192 build",
+    "start": "react-scripts --max_old_space_size=18192 start",
+    "build": "react-scripts --max_old_space_size=18192 build",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "test": "react-scripts test",
