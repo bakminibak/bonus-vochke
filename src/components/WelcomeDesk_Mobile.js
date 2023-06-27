@@ -28,7 +28,7 @@ export const WelcomeDeskMobile = ({updateLevel, isLoading}) => {
           }, 1000);
           return () => clearTimeout(timer);
 
-      }, [])
+      }, [audioWelcome])
 
 
       React.useEffect(() => {          

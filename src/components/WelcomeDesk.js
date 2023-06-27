@@ -27,7 +27,7 @@ export const WelcomeDesk = ({updateLevel, isLoading}) => {
               clearTimeout(timer);
           }
           
-      }, [])
+      }, [audioWelcome])
     
       React.useEffect(() => {          
         isLoading(false);
