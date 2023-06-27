@@ -1,27 +1,27 @@
 {
   "files": {
-    "main.css": "/static/css/main.748c2a3e.css",
-    "main.js": "/static/js/main.6d1b32b1.js",
-    "static/js/787.f7234cf6.chunk.js": "/static/js/787.f7234cf6.chunk.js",
-    "static/media/MerkurSans-Black-web.otf": "/static/media/MerkurSans-Black-web.f97396a6be9bf0247ebd.otf",
-    "static/media/MerkurSans-CondensedBlack-web.otf": "/static/media/MerkurSans-CondensedBlack-web.b411818729d1ae15d9b0.otf",
-    "static/media/MerkurSans-Regular-web.otf": "/static/media/MerkurSans-Regular-web.bc334e39b143345b15cc.otf",
-    "static/media/MerkurSans-CondensedBlack-web.eot": "/static/media/MerkurSans-CondensedBlack-web.53c7b6dcaabefab3abe6.eot",
-    "static/media/MerkurSans-Black-web.eot": "/static/media/MerkurSans-Black-web.a3900109d81e22ac55c5.eot",
-    "static/media/MerkurSans-Regular-web.eot": "/static/media/MerkurSans-Regular-web.e135fed5e665a4c86bc7.eot",
-    "static/media/MerkurSans-CondensedBlack-web.woff": "/static/media/MerkurSans-CondensedBlack-web.6f5501b21bed15b0a653.woff",
-    "static/media/MerkurSans-Black-web.woff": "/static/media/MerkurSans-Black-web.a0c4e0c6898e9ce4ad40.woff",
-    "static/media/MerkurSans-Regular-web.woff": "/static/media/MerkurSans-Regular-web.f44214e16729ba86f2b1.woff",
-    "static/media/MerkurSans-CondensedBlack-web.woff2": "/static/media/MerkurSans-CondensedBlack-web.6ab28713abe3efcd6549.woff2",
-    "static/media/MerkurSans-Black-web.woff2": "/static/media/MerkurSans-Black-web.a616561e96baf08545d3.woff2",
-    "static/media/MerkurSans-Regular-web.woff2": "/static/media/MerkurSans-Regular-web.9e93760633aafd61503d.woff2",
-    "index.html": "/index.html",
-    "main.748c2a3e.css.map": "/static/css/main.748c2a3e.css.map",
-    "main.6d1b32b1.js.map": "/static/js/main.6d1b32b1.js.map",
-    "787.f7234cf6.chunk.js.map": "/static/js/787.f7234cf6.chunk.js.map"
+    "main.css": "/bonus-vochke/static/css/main.bb31bf3b.css",
+    "main.js": "/bonus-vochke/static/js/main.7eafa1ec.js",
+    "static/js/787.f7234cf6.chunk.js": "/bonus-vochke/static/js/787.f7234cf6.chunk.js",
+    "static/media/MerkurSans-Black-web.otf": "/bonus-vochke/static/media/MerkurSans-Black-web.f97396a6be9bf0247ebd.otf",
+    "static/media/MerkurSans-CondensedBlack-web.otf": "/bonus-vochke/static/media/MerkurSans-CondensedBlack-web.b411818729d1ae15d9b0.otf",
+    "static/media/MerkurSans-Regular-web.otf": "/bonus-vochke/static/media/MerkurSans-Regular-web.bc334e39b143345b15cc.otf",
+    "static/media/MerkurSans-CondensedBlack-web.eot": "/bonus-vochke/static/media/MerkurSans-CondensedBlack-web.53c7b6dcaabefab3abe6.eot",
+    "static/media/MerkurSans-Black-web.eot": "/bonus-vochke/static/media/MerkurSans-Black-web.a3900109d81e22ac55c5.eot",
+    "static/media/MerkurSans-Regular-web.eot": "/bonus-vochke/static/media/MerkurSans-Regular-web.e135fed5e665a4c86bc7.eot",
+    "static/media/MerkurSans-CondensedBlack-web.woff": "/bonus-vochke/static/media/MerkurSans-CondensedBlack-web.6f5501b21bed15b0a653.woff",
+    "static/media/MerkurSans-Black-web.woff": "/bonus-vochke/static/media/MerkurSans-Black-web.a0c4e0c6898e9ce4ad40.woff",
+    "static/media/MerkurSans-Regular-web.woff": "/bonus-vochke/static/media/MerkurSans-Regular-web.f44214e16729ba86f2b1.woff",
+    "static/media/MerkurSans-CondensedBlack-web.woff2": "/bonus-vochke/static/media/MerkurSans-CondensedBlack-web.6ab28713abe3efcd6549.woff2",
+    "static/media/MerkurSans-Black-web.woff2": "/bonus-vochke/static/media/MerkurSans-Black-web.a616561e96baf08545d3.woff2",
+    "static/media/MerkurSans-Regular-web.woff2": "/bonus-vochke/static/media/MerkurSans-Regular-web.9e93760633aafd61503d.woff2",
+    "index.html": "/bonus-vochke/index.html",
+    "main.bb31bf3b.css.map": "/bonus-vochke/static/css/main.bb31bf3b.css.map",
+    "main.7eafa1ec.js.map": "/bonus-vochke/static/js/main.7eafa1ec.js.map",
+    "787.f7234cf6.chunk.js.map": "/bonus-vochke/static/js/787.f7234cf6.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.748c2a3e.css",
-    "static/js/main.6d1b32b1.js"
+    "static/css/main.bb31bf3b.css",
+    "static/js/main.7eafa1ec.js"
   ]
 }
