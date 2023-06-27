@@ -1,0 +1,539 @@
+@font-face {
+  font-family: "MerkurSansRegular";
+  src: url("../public/css/Webfonts/EOT/MerkurSans-Regular-web.eot");
+  src: url("../public/css/Webfonts/WOFF/MerkurSans-Regular-web.woff") format("woff"),
+  url("../public/css/Webfonts/WOFF2/MerkurSans-Regular-web.woff2") format("woff2"),
+  url("../public/css/Webfonts/OTF/MerkurSans-Regular-web.otf") format("opentype");
+  }
+  
+@font-face {
+  font-family: "MerkurSansBlack";
+  src: url("../public/css/Webfonts/EOT/MerkurSans-Black-web.eot");
+  src: url("../public/css/Webfonts/WOFF/MerkurSans-Black-web.woff") format("woff"),
+  url("../public/css/Webfonts/WOFF2/MerkurSans-Black-web.woff2") format("woff2"),
+  url("../public/css/Webfonts/OTF/MerkurSans-Black-web.otf") format("opentype");
+  }
+
+@font-face {
+  font-family: "MerkurSansCondensedBlack";
+  src: url("../public/css/Webfonts/EOT/MerkurSans-CondensedBlack-web.eot");
+  src: url("../public/css/Webfonts/WOFF/MerkurSans-CondensedBlack-web.woff") format("woff"),
+  url("../public/css/Webfonts/WOFF2/MerkurSans-CondensedBlack-web.woff2") format("woff2"),
+  url("../public/css/Webfonts/OTF/MerkurSans-CondensedBlack-web.otf") format("opentype");
+  }
+body {
+  font-size: 24px;
+  background-color: rgb(2, 20, 41);
+  font-family: 'MerkurSansRegular', Arial, sans-serif;
+  font-weight:normal;
+  font-style:normal;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+   -khtml-user-select: none; /* Konqueror HTML */
+     -moz-user-select: none; /* Old versions of Firefox */
+      -ms-user-select: none; /* Internet Explorer/Edge */
+          user-select: none; /* Non-prefixed version, currently
+                                supported by Chrome, Edge, Opera and Firefox */
+}
+
+button,
+textarea,
+input,
+select,
+.btn,
+.chest,
+.hitTarget,
+a{
+ -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+ -webkit-tap-highlight-color: transparent;
+ -webkit-user-select: none;
+ -khtml-user-select: none;
+ -moz-user-select: none;
+ -ms-user-select: none;
+  user-select: none;
+}
+.App {
+  text-align: center;
+  position: relative;
+  min-width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+main {
+  max-height: 98vh;
+  height: 100%;
+  min-width: 50%;
+  width: auto;
+  margin: auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.mobile main {
+  width: 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  position: relative;
+  background-color: #282c34;
+  /* min-height: 100vh; */
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+
+.animation-container {
+  background-color: red;
+}
+.level-animation-container {
+  position: relative;
+  background-color: #282c34;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 0;
+}
+
+.intro-heading {
+    position: absolute;
+    z-index: 150;
+    left: 0;
+    right: 0;
+    width: 60%;
+    top: 15%;
+    margin: auto;
+}
+.desktop-view,
+.mobile-view {
+  position: relative;
+}
+.mobile-view .intro-heading {
+  width:60%;  
+  top: 12%;
+}
+.intro-heading-totalbonus {
+  font-size: clamp(20px, 4vw, 34px);
+  color: #FFCB05;
+  font-weight: lighter;
+}
+.continueSession-msg {
+  
+  opacity: 0;
+  transition: opacity 2.5s ease-in-out;
+  position: absolute;
+  z-index: 150;
+  left: 0;
+  right: 0;
+  width: 60%;
+  min-width: 320px;
+  top: 35%;
+  margin: auto;  
+  color: #fff;
+  font-size: 34px;
+  font-weight: bolder;
+  opacity: 0;
+}
+.intro-heading-title {
+  color: #fff;
+  font-size: 34px;
+  font-weight: bolder;
+  display: none;
+}
+.intro-heading-logo img {
+  max-width: 200px;
+  display: none;
+}
+
+
+.chests {
+  display: flex;
+  position: absolute;
+  z-index: 100;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  /* scale: 1.3; */
+  /* padding-left: 100px;
+  padding-right: 100px;
+  margin-left: -50px;
+  margin-right: -50px; */
+}
+.chests-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-content: center;
+  margin-left: 150px;
+  margin-right: 150px;
+}
+.chest-wrapper {
+  display: flex;
+  align-items: flex-end;
+  margin-top: 100px;
+}
+.chest-wrapper .points {
+  /* background-color: greenyellow; */
+  
+  font-family: 'MerkurSansBlack', Arial, sans-serif;
+  font-weight: bold;
+  position: absolute;
+  color: #007900;
+  font-size: min(max(16px, 4vw), 32px);
+  
+
+  /* transform: translateY(-430px); */
+  opacity: 0;
+  display: block;
+  transition:  bottom 0.5s ease 0.5s, opacity 0.5s ease-out 0.5s;
+  z-index: 100;
+  padding-right: 27px;
+  text-align: center;
+  left: 0;
+  right: 0px;
+  line-height: 16px;
+  bottom: 0;
+}
+.chest-wrapper .points.negative {
+  color: #da0303!important;
+}
+.mobile-view .points {
+  font-size: 18px;
+  line-height: 10px;
+  padding-right: 15px;
+}
+.mobile-view .points .small-text {
+  font-size: 8px;
+}
+
+.small-text {
+  font-size: 14px;
+  font-weight: 500;
+  
+  font-family: 'MerkurSansRegular', Arial, sans-serif;
+  font-weight:normal;
+}
+.chest-wrapper .points.show { 
+  /* transform:  translateY(-290px); */
+  bottom: 75%;
+  
+  display: block;
+  /* margin-top: 200px; */
+  opacity: 1;
+}
+.chest-wrapper .hide  .finger-container {
+  opacity: 0;
+}
+.chest-wrapper .finger-container {
+  transition: opacity 0.5s ease-out 0.3s;
+}
+.kovcheg-anim_full {
+  bottom: 0;
+}
+.chest {
+  /* background-color: red;   */
+  /* position: absolute;   */
+  /* width: 30%; */
+  transform: scale(1);
+  /* bottom: -90px; */
+  margin-bottom: 37px;
+  position: relative;
+}
+.chest .hitTarget {
+  z-index: 1000;
+  cursor: pointer;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 150px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgba(128, 255, 0, 0);
+  
+}
+.mobile-view .chest {
+  transform: scale(1.6);
+}
+.mobile-view .chest.k2 {
+  transform: scale(1.4);
+  margin-bottom: 95px;
+  z-index: 0;
+}
+.mobile-view .chest .percent {
+  /* font-size: 6px; */
+}
+
+.chest  .false {
+  display: none;
+}
+.k1 {
+  /* position: absolute; */
+  /* left: 10%; */
+  z-index: 1;
+  /* width: 30%; */
+  /* scale: 0.8; */
+  margin-bottom: 55px;
+}
+.k2 {
+  /* position: absolute; */
+  /* left: 34%; */
+  z-index: 3;  
+  transform: scale(1.2);
+}
+.k3 {
+  /* position: absolute; */
+  /* left: 57%; */
+  /* scale: 0.8; */
+  margin-bottom: 55px;
+  z-index: 2;
+}
+.finger-container {
+  position: absolute;
+  transform: scale(0.6);
+  top: 0;
+  left: 40%;
+}
+.mobile-view .finger-container {
+  transform: scale(0.6);
+}
+
+.button_getbonus,
+.button_endgame,
+.button_next,
+.button_getbonus_container {
+  position: absolute;
+  bottom: 0px;
+  right: 10px;
+  z-index: 200;
+  /* max-width: 30%; */
+}
+.button_next {
+  /* animation-name: swing-lr;
+  animation-duration: 1s;  
+  animation-iteration-count: infinite; */
+}
+
+.mobile-view .btn {
+  max-height: 30px;
+  /* position: relative; */
+  bottom: 30px;
+}
+.mobile-view .btn svg {
+  max-height: 60px;
+  width: auto;
+
+}
+.mobile-view .btn img {
+  max-height: 30px;
+  width: auto;
+}
+.mobile-view .finalPoints {
+  top: 23%;
+}
+.button_getbonus {
+  
+}
+.button_check_account {
+  width: 100%;
+  position: absolute;
+  bottom: 20px;
+  right: 0px;
+  left: 0;
+  z-index: 200;
+  text-align: center;
+}
+.button_start {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  right: 0px;
+  left: 0;
+  z-index: 200;
+  text-align: center;
+}
+.button_getbonus img,
+.button_start img {
+  max-width: 240px;
+}
+.button_check_account img {
+  max-width: 340px;
+}
+.continue_btn,
+.welcome-scr-animation-container .btn {
+  position: absolute;
+  text-align: center;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  z-index: 2000;
+  display: flex;
+  justify-content: center;
+}
+.start_btn {
+  opacity: 0;
+  transform: translateY(300px);
+  transition: all 0.5s ease;
+}
+.start_btn.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.start_btn {
+  max-width: 310px;
+}
+.c-container {
+  position: relative;
+
+}
+.c-container1 {
+  display: none;
+}
+.c-container .finalPoints {  
+  font-size: clamp(30px, 10vw, 55px);
+  color: rgb(0,38,82);
+  font-family: 'MerkurSansCondensedBlack', Arial, sans-serif;
+  font-weight: bolder;
+  position: absolute;
+  top: 26%;
+  z-index: 300;
+  left: 0;
+  right: 0;
+  text-align: center;
+  opacity: 0;
+  animation: fadeIn 2s 1s ease-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.session-end {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 10000;
+}
+.btn {
+  background-color: transparent;
+  border: none;
+  bottom: 25px;
+  cursor: pointer;
+}
+.btn img {
+  width: auto;
+  height: 100%;
+  max-height: 40px;
+}
+.endScr-msg {
+  font-size: 24px;  
+  font-family: 'MerkurSansRegular', Arial, sans-serif;
+  color: white;
+  
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 20px;
+  z-index: 10000;
+}
+.endScr-msg > div {
+  max-width: 640px;
+  margin: auto;
+  padding: 0 20px;
+  padding-bottom: 0;
+}
+
+@media only screen and (max-width: 768px){
+  .chests-container {
+    margin: auto 20px auto 40px;
+    
+  }
+  .chest-wrapper {
+    margin-bottom: -25px;
+  }
+  .endScr-msg {
+    font-size: 14px;
+  }
+}
+
+@keyframes swing-lr {
+  0% {
+    transform: translateX(0%);
+  }
+  50% {
+    transform: translateX(-20%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.loaderIcon {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20000;
+  
+  background-color: rgba(2, 20, 41, 0.658);
+}
+.continue-game {
+  position: relative;
+  /* background-color: rebeccapurple; */
+}
+.mobile-view .continue-game .continueSession-msg {
+  font-size: 20px;
+}
+
+.hide-msg {
+  opacity: 0;
+}
+.show-msg {
+  opacity: 1;
+}
+.btn-hide {
+  display: none;
+}
+.show {
+  opacity: 1;
+  display: block;
+}
